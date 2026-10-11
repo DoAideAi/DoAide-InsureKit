@@ -149,7 +149,7 @@ export default function PremiumCalculator() {
                       onClick={() => setMode(key)}
                       className={`px-3 py-2 rounded-lg text-sm font-medium transition-all ${
                         mode === key
-                          ? "bg-signal text-ink-900"
+                          ? "bg-signal text-white"
                           : "bg-white/5 text-white/50 hover:bg-white/10 hover:text-white/70"
                       }`}
                     >
@@ -172,7 +172,7 @@ export default function PremiumCalculator() {
                       onClick={() => setIsFirstYear(key)}
                       className={`px-3 py-2 rounded-lg text-sm font-medium transition-all ${
                         isFirstYear === key
-                          ? "bg-signal text-ink-900"
+                          ? "bg-signal text-white"
                           : "bg-white/5 text-white/50 hover:bg-white/10 hover:text-white/70"
                       }`}
                     >

@@ -77,23 +77,23 @@ export default function InsuranceNeedsCalculator() {
       <title>Insurance Needs Analysis — InsureKit</title>
       <style>
         body { font-family: Arial, sans-serif; max-width: 700px; margin: 40px auto; color: #1a1a1d; padding: 0 20px; }
-        h1 { color: #b8860b; font-size: 22px; margin-bottom: 4px; }
+        h1 { color: #0D9488; font-size: 22px; margin-bottom: 4px; }
         .subtitle { color: #666; font-size: 13px; margin-bottom: 24px; }
-        .cover-box { background: #f8f4e8; border: 2px solid #d4af37; border-radius: 12px; padding: 24px; text-align: center; margin-bottom: 24px; }
-        .cover-amount { font-size: 36px; font-weight: bold; color: #b8860b; }
+        .cover-box { background: #f0fdfa; border: 2px solid #0D9488; border-radius: 12px; padding: 24px; text-align: center; margin-bottom: 24px; }
+        .cover-amount { font-size: 36px; font-weight: bold; color: #0D9488; }
         .cover-sub { color: #888; font-size: 13px; margin-top: 4px; }
         table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
         th { text-align: left; padding: 8px 12px; background: #f5f5f5; border-bottom: 1px solid #ddd; font-size: 13px; color: #666; text-transform: uppercase; }
         td { padding: 8px 12px; border-bottom: 1px solid #eee; font-size: 14px; }
         td:last-child { text-align: right; font-variant-numeric: tabular-nums; }
-        .total td { font-weight: bold; border-top: 2px solid #d4af37; }
+        .total td { font-weight: bold; border-top: 2px solid #0D9488; }
         .deduct td { color: #c0392b; }
-        .final td { font-weight: bold; color: #b8860b; font-size: 16px; border-top: 2px solid #d4af37; }
+        .final td { font-weight: bold; color: #0D9488; font-size: 16px; border-top: 2px solid #0D9488; }
         .params { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; margin-bottom: 24px; font-size: 13px; }
         .params div { display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid #f0f0f0; }
         .params .label { color: #888; }
         .disclaimer { color: #999; font-size: 11px; margin-top: 24px; text-align: center; border-top: 1px solid #eee; padding-top: 12px; }
-        .branding { text-align: center; color: #b8860b; font-weight: bold; margin-top: 16px; font-size: 13px; }
+        .branding { text-align: center; color: #0D9488; font-weight: bold; margin-top: 16px; font-size: 13px; }
         @media print { body { margin: 20px; } }
       </style>
     </head><body>

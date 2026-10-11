@@ -101,7 +101,7 @@ export default function ClaimEstimator() {
                   onClick={() => setClaimType(key)}
                   className={`flex-1 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
                     claimType === key
-                      ? "bg-signal text-ink-900"
+                      ? "bg-signal text-white"
                       : "bg-white/5 text-white/50 hover:bg-white/10"
                   }`}
                 >

@@ -121,7 +121,7 @@ export default function PlansDirectoryPage() {
             onClick={() => setActiveType(tab.key)}
             className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
               activeType === tab.key
-                ? "bg-signal text-ink-900"
+                ? "bg-signal text-white"
                 : "bg-white/5 text-white/50 hover:bg-white/10 hover:text-white/70"
             }`}
           >

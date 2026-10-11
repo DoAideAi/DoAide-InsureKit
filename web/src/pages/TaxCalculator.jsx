@@ -99,7 +99,7 @@ export default function TaxCalculator() {
                 onClick={() => setIncome(p.value)}
                 className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
                   income === p.value
-                    ? "bg-signal text-ink-900"
+                    ? "bg-signal text-white"
                     : "bg-white/5 text-white/40 hover:bg-white/10"
                 }`}
               >

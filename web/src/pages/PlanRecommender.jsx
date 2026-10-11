@@ -58,7 +58,7 @@ export default function PlanRecommender() {
           {[1, 2, 3].map((s) => (
             <div key={s} className="flex items-center gap-2">
               <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all ${
-                step >= s ? "bg-signal text-ink-900" : "bg-white/5 text-white/30"
+                step >= s ? "bg-signal text-white" : "bg-white/5 text-white/30"
               }`}>
                 {step > s ? "✓" : s}
               </div>
@@ -86,7 +86,7 @@ export default function PlanRecommender() {
                   key={p.value}
                   onClick={() => setBudget(p.value)}
                   className={`px-3 py-2 rounded-lg text-sm font-medium transition-all ${
-                    budget === p.value ? "bg-signal text-ink-900" : "bg-white/5 text-white/50 hover:bg-white/10"
+                    budget === p.value ? "bg-signal text-white" : "bg-white/5 text-white/50 hover:bg-white/10"
                   }`}
                 >
                   {p.label}
@@ -110,7 +110,7 @@ export default function PlanRecommender() {
                   key={key}
                   onClick={() => setGoal(key)}
                   className={`px-4 py-3 rounded-lg text-sm font-medium text-left transition-all ${
-                    goal === key ? "bg-signal text-ink-900" : "bg-white/5 text-white/50 hover:bg-white/10"
+                    goal === key ? "bg-signal text-white" : "bg-white/5 text-white/50 hover:bg-white/10"
                   }`}
                 >
                   {label}

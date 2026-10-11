@@ -113,7 +113,7 @@ export default function PremiumTable() {
           <div className="flex items-end">
             <button
               onClick={() => setShowRates(!showRates)}
-              className={`px-4 py-2.5 rounded-lg text-sm font-medium transition-all w-full ${showRates ? "bg-signal text-ink-900" : "bg-white/5 text-white/50 hover:bg-white/10"}`}
+              className={`px-4 py-2.5 rounded-lg text-sm font-medium transition-all w-full ${showRates ? "bg-signal text-white" : "bg-white/5 text-white/50 hover:bg-white/10"}`}
             >
               {showRates ? "Showing rate/1000" : "Showing premium"}
             </button>

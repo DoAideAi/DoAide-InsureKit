@@ -29,7 +29,7 @@ export default function SignUpBanner() {
         Sign up free to keep your clients & policies backed up.
       </p>
       <div className="flex items-center gap-2 shrink-0">
-        <a href="/login" className="text-xs font-medium px-3 py-1.5 rounded-lg bg-signal text-ink-900 hover:brightness-110 transition-all no-underline">
+        <a href="/login" className="text-xs font-medium px-3 py-1.5 rounded-lg bg-signal text-white hover:brightness-110 transition-all no-underline">
           Sign up
         </a>
         <button

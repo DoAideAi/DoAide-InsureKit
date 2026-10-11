@@ -35,7 +35,7 @@ const s = {
     display: "flex", justifyContent: "space-between", padding: "6px 0",
     borderBottom: "1px solid rgba(255,255,255,0.05)", fontSize: 13,
   },
-  total: { fontWeight: 700, fontSize: 15, color: "#f0b429", borderBottom: "none", paddingTop: 8 },
+  total: { fontWeight: 700, fontSize: 15, color: "#0D9488", borderBottom: "none", paddingTop: 8 },
   powered: {
     display: "block", textAlign: "center", padding: "8px 16px",
     borderTop: "1px solid rgba(255,255,255,0.08)", fontSize: 12,
@@ -129,7 +129,7 @@ export default function EmbedPremiumCalculator() {
         )}
       </div>
       <a style={s.powered} href="https://insure.doaide.com?ref=widget" target="_blank" rel="noopener noreferrer">
-        Powered by <strong style={{ color: "#f0b429" }}>DoAide InsureKit</strong>
+        Powered by <strong style={{ color: "#0D9488" }}>DoAide InsureKit</strong>
       </a>
     </div>
   );

@@ -185,7 +185,7 @@ export default function PolicyComparisonTool() {
           <button
             key={n}
             onClick={() => setCount(n)}
-            className={`px-3 py-1 rounded text-xs font-medium transition-colors ${count === n ? "bg-signal text-black" : "bg-white/5 text-white/50 hover:bg-white/10"}`}
+            className={`px-3 py-1 rounded text-xs font-medium transition-colors ${count === n ? "bg-signal text-white" : "bg-white/5 text-white/50 hover:bg-white/10"}`}
           >
             {n} Policies
           </button>

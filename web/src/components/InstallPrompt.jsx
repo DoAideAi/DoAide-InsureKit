@@ -35,8 +35,8 @@ export default function InstallPrompt() {
       <div className="flex items-center gap-3">
         <div className="w-10 h-10 rounded-lg bg-signal/20 flex items-center justify-center shrink-0">
           <svg width="20" height="20" viewBox="0 0 32 32" fill="none">
-            <rect width="32" height="32" rx="6" fill="#0a0a0b" />
-            <path d="M8 22V10h3v5h2.5L17 10h3.5l-4 6 4.5 6H17.5l-3-4.5H11V22z" fill="#f0b429" />
+            <rect width="32" height="32" rx="6" fill="#0D9488" />
+            <text x="16" y="22" fontFamily="Inter, system-ui, sans-serif" fontWeight="700" fontSize="15" fill="#fff" textAnchor="middle">IK</text>
           </svg>
         </div>
         <div className="flex-1 min-w-0">

@@ -5,12 +5,32 @@
   --color-ink-800: #101012;
   --color-ink-700: #16161a;
   --color-ink-600: #1d1d22;
-  --color-signal: #f0b429;
-  --color-signal-soft: #f7d070;
-  --color-signal-dim: #a87c1c;
+  --color-signal: #0D9488;
+  --color-signal-soft: #2DD4BF;
+  --color-signal-dim: #0F766E;
   --color-good: #4ade80;
   --color-warn: #fb923c;
   --color-bad: #f87171;
+}
+
+:root {
+  --da-primary: #0D9488;
+  --da-primary-hover: #0F766E;
+  --da-primary-light: #2DD4BF;
+  --da-primary-dim: #115E59;
+  --da-primary-bg: rgba(13, 148, 136, 0.1);
+  --da-primary-bg-hover: rgba(13, 148, 136, 0.15);
+  --da-bg: #0A0A0B;
+  --da-bg-alt: #111113;
+  --da-surface: #1A1A1D;
+  --da-surface-hover: #222225;
+  --da-border: #2A2A2D;
+  --da-text: #E5E7EB;
+  --da-text-secondary: #9CA3AF;
+  --da-text-muted: #6B7280;
+  --da-text-on-primary: #FFFFFF;
+  --da-font: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --da-font-display: 'Instrument Serif', Georgia, serif;
 }
 
 html {
@@ -19,7 +39,7 @@ html {
 
 body {
   margin: 0;
-  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--da-font);
   font-size: 15px;
   color: rgba(255, 255, 255, 0.8);
   background: var(--color-ink-900);
@@ -27,14 +47,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-image: radial-gradient(
     ellipse 80% 50% at 50% -10%,
-    rgba(240, 180, 41, 0.05),
+    rgba(13, 148, 136, 0.06),
     transparent 70%
   );
   background-attachment: fixed;
 }
 
 ::selection {
-  background: rgba(240, 180, 41, 0.25);
+  background: rgba(13, 148, 136, 0.3);
   color: white;
 }
 
@@ -74,7 +94,7 @@ input[type="number"] {
 
 .btn-primary {
   background: var(--color-signal);
-  color: #0a0a0b;
+  color: #ffffff;
   font-weight: 600;
   padding: 10px 24px;
   border-radius: 8px;
@@ -84,7 +104,7 @@ input[type="number"] {
 }
 .btn-primary:hover {
   background: var(--color-signal-soft);
-  box-shadow: 0 0 0 1px rgba(240, 180, 41, 0.3), 0 0 24px -8px rgba(240, 180, 41, 0.3);
+  box-shadow: 0 0 0 1px rgba(13, 148, 136, 0.3), 0 0 24px -8px rgba(13, 148, 136, 0.3);
 }
 
 .btn-secondary {
@@ -115,7 +135,7 @@ input[type="number"] {
 }
 .input-field:focus {
   border-color: var(--color-signal);
-  box-shadow: 0 0 0 2px rgba(240, 180, 41, 0.15);
+  box-shadow: 0 0 0 2px rgba(13, 148, 136, 0.15);
 }
 
 .select-field {
@@ -196,7 +216,7 @@ input[type="number"] {
     color: black !important;
   }
   .stat-card .value.accent {
-    color: #2563eb !important;
+    color: #0D9488 !important;
   }
   main {
     max-width: 100% !important;

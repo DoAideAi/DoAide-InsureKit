@@ -81,13 +81,13 @@ export default function FdRdCalculator() {
       <div className="flex gap-2 mb-6">
         <button
           onClick={() => setMode("fd")}
-          className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${mode === "fd" ? "bg-signal text-black" : "bg-white/5 text-white/50 hover:bg-white/10"}`}
+          className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${mode === "fd" ? "bg-signal text-white" : "bg-white/5 text-white/50 hover:bg-white/10"}`}
         >
           Fixed Deposit
         </button>
         <button
           onClick={() => setMode("rd")}
-          className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${mode === "rd" ? "bg-signal text-black" : "bg-white/5 text-white/50 hover:bg-white/10"}`}
+          className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${mode === "rd" ? "bg-signal text-white" : "bg-white/5 text-white/50 hover:bg-white/10"}`}
         >
           Recurring Deposit
         </button>

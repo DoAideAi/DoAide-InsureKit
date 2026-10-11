@@ -164,7 +164,7 @@ export default function BestLicTools() {
           <div key={tool.name} className={`panel p-5 sm:p-6 ${tool.rank === 1 ? "border-signal/30" : ""}`}>
             <div className="flex items-center gap-3 mb-3">
               <span className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
-                tool.rank === 1 ? "bg-signal text-ink-900" : "bg-white/10 text-white/50"
+                tool.rank === 1 ? "bg-signal text-white" : "bg-white/10 text-white/50"
               }`}>
                 #{tool.rank}
               </span>

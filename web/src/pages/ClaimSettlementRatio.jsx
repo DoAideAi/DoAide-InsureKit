@@ -129,7 +129,7 @@ export default function ClaimSettlementRatio() {
                   key={f.key}
                   onClick={() => setFilterType(f.key)}
                   className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
-                    filterType === f.key ? "bg-signal text-ink-900" : "bg-white/5 text-white/40 hover:bg-white/10"
+                    filterType === f.key ? "bg-signal text-white" : "bg-white/5 text-white/40 hover:bg-white/10"
                   }`}
                 >
                   {f.label}
@@ -145,7 +145,7 @@ export default function ClaimSettlementRatio() {
                   key={s.key}
                   onClick={() => toggleSort(s.key)}
                   className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
-                    sortBy === s.key ? "bg-signal text-ink-900" : "bg-white/5 text-white/40 hover:bg-white/10"
+                    sortBy === s.key ? "bg-signal text-white" : "bg-white/5 text-white/40 hover:bg-white/10"
                   }`}
                 >
                   {s.label} {sortBy === s.key && (sortDir === "desc" ? "↓" : "↑")}
@@ -198,7 +198,7 @@ export default function ClaimSettlementRatio() {
                   <button
                     onClick={() => toggleCompare(d.name)}
                     className={`w-6 h-6 rounded text-xs font-bold transition-all ${
-                      selectedCompanies.includes(d.name) ? "bg-signal text-ink-900" : "bg-white/10 text-white/30 hover:bg-white/20"
+                      selectedCompanies.includes(d.name) ? "bg-signal text-white" : "bg-white/10 text-white/30 hover:bg-white/20"
                     }`}
                   >
                     {selectedCompanies.includes(d.name) ? "✓" : "+"}

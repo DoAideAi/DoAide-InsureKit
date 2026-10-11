@@ -132,7 +132,7 @@ export default function BestLicTools() {
       {TOOLS.map((tool) => (
         <div key={tool.rank} className={`panel p-5 mb-4 ${tool.highlight ? "border border-signal/30" : ""}`}>
           <div className="flex items-center gap-3 mb-2">
-            <span className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold ${tool.highlight ? "bg-signal text-black" : "bg-white/10 text-white/50"}`}>
+            <span className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold ${tool.highlight ? "bg-signal text-white" : "bg-white/10 text-white/50"}`}>
               #{tool.rank}
             </span>
             <h2 className="text-lg font-bold text-white m-0">{tool.name}</h2>
