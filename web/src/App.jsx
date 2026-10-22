@@ -101,7 +101,6 @@ import MarkdownPost from "./pages/blog/MarkdownPost";
 import InsurancePremiumEstimator from "./pages/InsurancePremiumEstimator";
 import PolicyComparisonTool from "./pages/PolicyComparisonTool";
 import ToolTracker from "./components/ToolTracker";
-import SocialProofBar from "./components/SocialProofBar";
 import ReferralBanner from "./components/ReferralBanner";
 import FloatingPremiumWidget from "./components/FloatingPremiumWidget";
 import FeedbackWidget from "./components/FeedbackWidget";
@@ -127,7 +126,6 @@ export default function App() {
       {!isHome && <Breadcrumb />}
       <ToolTracker />
       <main className="flex-1 max-w-4xl w-full mx-auto px-4 py-6">
-        <SocialProofBar />
         <SignUpBanner />
         <Routes>
           <Route path="/" element={<HomePage />} />

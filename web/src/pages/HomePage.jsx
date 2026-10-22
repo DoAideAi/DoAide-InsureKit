@@ -1,34 +1,7 @@
-import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import FAQ from "../components/FAQ";
 import RecentTools from "../components/RecentTools";
 import TrendingTools from "../components/TrendingTools";
-
-function AnimatedCounter({ end, suffix = "", duration = 2000 }) {
-  const [count, setCount] = useState(0);
-  const ref = useRef(null);
-  const started = useRef(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting && !started.current) {
-        started.current = true;
-        const start = performance.now();
-        const step = (now) => {
-          const progress = Math.min((now - start) / duration, 1);
-          const eased = 1 - Math.pow(1 - progress, 3);
-          setCount(Math.floor(eased * end));
-          if (progress < 1) requestAnimationFrame(step);
-        };
-        requestAnimationFrame(step);
-      }
-    }, { threshold: 0.3 });
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [end, duration]);
-
-  return <span ref={ref}>{count.toLocaleString()}{suffix}</span>;
-}
 
 const POPULAR_TOOLS = [
   { path: "/dashboard", name: "Agent Dashboard", icon: "📋" },
@@ -335,13 +308,6 @@ const TOOL_CATEGORIES = [
   },
 ];
 
-const TESTIMONIALS = [
-  { name: "Rajesh Verma", role: "LIC Agent, Delhi", stars: 5, quote: "InsureKit saves me hours every day. Premium calculations that used to take 10 minutes now take 10 seconds." },
-  { name: "Sunita Patil", role: "Senior Advisor, Pune", stars: 5, quote: "The plan comparison tool is a game changer — I show clients side-by-side benefits right on my phone during meetings." },
-  { name: "Amit Choudhary", role: "Branch Manager, Jaipur", stars: 5, quote: "My entire team uses InsureKit. The commission calculator and policy tracker keep our portfolio organised effortlessly." },
-  { name: "Deepika Nair", role: "LIC Agent, Kochi", stars: 4, quote: "Best free tool for LIC agents. The marketing templates and greeting cards help me stay connected with clients year-round." },
-];
-
 const FAQ_ITEMS = [
   { q: "Is InsureKit free to use?", a: "Yes, completely free! No login, no registration, no hidden charges. All tools work offline once loaded. InsureKit is made by DoAide to help LIC agents serve their clients better." },
   { q: "Is my data safe?", a: "Absolutely. InsureKit runs entirely in your browser. No data is sent to any server. Policy tracker and client reminder data is stored in your browser's local storage — only you can access it." },
@@ -365,7 +331,7 @@ export default function HomePage() {
           Free LIC Agent Tools &amp; Calculators
         </h1>
         <p className="text-white/40 text-sm sm:text-base max-w-xl mx-auto mb-4">
-          Compare 30+ LIC plans, calculate premiums with GST, estimate maturity &amp; commission — trusted by 5,000+ LIC agents across India.
+          Compare 30+ LIC plans, calculate premiums with GST, estimate maturity &amp; commission — free tools built for LIC agents across India.
         </p>
         <div className="flex items-center justify-center gap-3 flex-wrap mb-5">
           <Link
@@ -397,20 +363,6 @@ export default function HomePage() {
           </span>
         </div>
 
-        <div className="flex items-center justify-center gap-8 flex-wrap mt-6">
-          <div className="text-center">
-            <div className="text-2xl font-bold text-signal"><AnimatedCounter end={5000} suffix="+" /></div>
-            <div className="text-[10px] text-white/30 mt-0.5">LIC Agents</div>
-          </div>
-          <div className="text-center">
-            <div className="text-2xl font-bold text-signal"><AnimatedCounter end={25000} suffix="+" duration={1800} /></div>
-            <div className="text-[10px] text-white/30 mt-0.5">Calculations Done</div>
-          </div>
-          <div className="text-center">
-            <div className="text-2xl font-bold text-signal"><AnimatedCounter end={40} suffix="+" duration={1200} /></div>
-            <div className="text-[10px] text-white/30 mt-0.5">Free Tools</div>
-          </div>
-        </div>
       </div>
 
       <RecentTools />
@@ -470,29 +422,6 @@ export default function HomePage() {
         </section>
       ))}
 
-      <section className="mb-10">
-        <div className="mb-4">
-          <h2 className="text-lg font-semibold text-white" style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}>Trusted by LIC Agents</h2>
-          <p className="text-xs text-white/30">What agents say about InsureKit</p>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {TESTIMONIALS.map((t) => (
-            <div key={t.name} className="panel p-5 border-signal/10">
-              <div className="flex items-center gap-0.5 mb-2">
-                {Array.from({ length: 5 }, (_, i) => (
-                  <span key={i} className={i < t.stars ? "text-signal" : "text-white/15"} style={{ fontSize: "14px" }}>★</span>
-                ))}
-              </div>
-              <p className="text-sm text-white/70 italic leading-relaxed mb-3">&ldquo;{t.quote}&rdquo;</p>
-              <div>
-                <div className="text-sm font-semibold text-white">{t.name}</div>
-                <div className="text-xs text-white/40">{t.role}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
       <TrendingTools />
 
       <section className="mb-10 panel p-6 text-center border-signal/20">
@@ -500,7 +429,7 @@ export default function HomePage() {
           Start Using InsureKit — It&apos;s Free
         </h2>
         <p className="text-sm text-white/40 max-w-lg mx-auto mb-4">
-          Join 5,000+ LIC agents who save hours every day with accurate premium calculations,
+          Save hours every day with accurate premium calculations,
           plan comparisons, and client management tools. No sign-up needed.
         </p>
         <div className="flex items-center justify-center gap-3 flex-wrap">

@@ -40,16 +40,12 @@ describe("HomePage", () => {
     expect(raw).toContain("Can I use this on my phone?");
   });
 
-  it("has testimonials section", async () => {
+  it("contains no fabricated testimonials or usage counters", async () => {
     const raw = (await import("./HomePage?raw")).default;
-    expect(raw).toContain("Trusted by LIC Agents");
-    expect(raw).toContain("TESTIMONIALS");
-  });
-
-  it("references animated counters for social proof", async () => {
-    const raw = (await import("./HomePage?raw")).default;
-    expect(raw).toContain("AnimatedCounter");
-    expect(raw).toContain("LIC Agents");
-    expect(raw).toContain("Calculations Done");
+    expect(raw).not.toContain("TESTIMONIALS");
+    expect(raw).not.toContain("AnimatedCounter");
+    expect(raw).not.toContain("trusted by 5,000+");
+    expect(raw).not.toContain("Join 5,000+");
+    expect(raw).not.toContain("Calculations Done");
   });
 });
