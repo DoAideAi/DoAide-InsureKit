@@ -8,28 +8,23 @@ const SITE_URL = "https://insure.doaide.com";
 const TOOLS = [
   {
     rank: 1, name: "DoAide InsureKit", pricing: "100% Free",
-    features: ["Premium calculator", "Maturity calculator", "Surrender & revival", "Loan against policy", "Commission calculator", "Plan recommender (AI)", "Claim estimator", "Tax benefit calculator", "10-year bonus history", "Policy tracker", "Works offline (PWA)"],
-    rating: "4.8", highlight: true,
+    features: ["Premium calculator", "Maturity calculator", "Surrender & revival", "Loan against policy", "Commission calculator", "Plan recommender (AI)", "Claim estimator", "Tax benefit calculator", "10-year bonus history", "Policy tracker", "Works offline (PWA)"], highlight: true,
   },
   {
     rank: 2, name: "LIC India Website", pricing: "Free",
-    features: ["Official premium tables", "Plan brochures", "Policy status check", "Premium payment"],
-    rating: "4.0", highlight: false,
+    features: ["Official premium tables", "Plan brochures", "Policy status check", "Premium payment"], highlight: false,
   },
   {
     rank: 3, name: "Perfect Agent Plus", pricing: "Freemium / Paid",
-    features: ["Premium calculator", "Maturity calculator", "Commission calculator", "Policy tracker", "Client reminders"],
-    rating: "4.2", highlight: false,
+    features: ["Premium calculator", "Maturity calculator", "Commission calculator", "Policy tracker", "Client reminders"], highlight: false,
   },
   {
     rank: 4, name: "LIC Super Sales Saathi", pricing: "Subscription",
-    features: ["Premium calculator", "Plan comparison", "Marketing materials", "Client management"],
-    rating: "3.9", highlight: false,
+    features: ["Premium calculator", "Plan comparison", "Marketing materials", "Client management"], highlight: false,
   },
   {
     rank: 5, name: "PolicyBazaar Calculator", pricing: "Free (lead-gen)",
-    features: ["Basic premium estimate", "Plan comparison", "Insurance purchase"],
-    rating: "4.1", highlight: false,
+    features: ["Basic premium estimate", "Plan comparison", "Insurance purchase"], highlight: false,
   },
 ];
 
@@ -126,7 +121,7 @@ export default function BestLicTools() {
         Best LIC Calculator Online 2026
       </h1>
       <p className="text-white/40 text-sm mb-8">
-        Top 5 LIC calculators compared — features, pricing, and ratings to help you choose the best tool.
+        Top 5 LIC calculators compared — features and pricing to help you choose the best tool.
       </p>
 
       {TOOLS.map((tool) => (
@@ -146,8 +141,7 @@ export default function BestLicTools() {
               <span key={f} className="text-[11px] px-2 py-0.5 rounded bg-white/5 text-white/60">{f}</span>
             ))}
           </div>
-          <div className="text-xs text-white/30">⭐ {tool.rating}/5</div>
-        </div>
+                  </div>
       ))}
 
       <section className="panel overflow-hidden my-8">

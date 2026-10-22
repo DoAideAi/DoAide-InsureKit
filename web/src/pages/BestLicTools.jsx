@@ -10,7 +10,6 @@ const TOOLS = [
     name: "DoAide InsureKit",
     url: "https://insure.doaide.com",
     price: "Free",
-    rating: "4.9/5",
     pros: [
       "22+ free tools — premium, maturity, surrender, revival, loan, claim, tax calculators",
       "Plan recommender, side-by-side comparison, detailed plan pages for 30+ LIC plans",
@@ -28,7 +27,6 @@ const TOOLS = [
     name: "Perfect Agent Plus",
     url: null,
     price: "Freemium (Rs.499-999/yr for premium features)",
-    rating: "4.3/5",
     pros: [
       "Good premium and maturity calculators",
       "Policy management features",
@@ -47,7 +45,6 @@ const TOOLS = [
     name: "LIC Super Sales Saathi",
     url: null,
     price: "Paid subscription",
-    rating: "3.8/5",
     pros: [
       "Official-feeling interface",
       "Client management features",
@@ -66,7 +63,6 @@ const TOOLS = [
     name: "LIC MF App (Official)",
     url: null,
     price: "Free",
-    rating: "3.5/5",
     pros: [
       "Official LIC app",
       "Policy status check",
@@ -172,7 +168,6 @@ export default function BestLicTools() {
                 <h2 className="text-base font-bold text-white">{tool.name}</h2>
                 <div className="flex items-center gap-3 text-xs text-white/40">
                   <span>{tool.price}</span>
-                  <span>{tool.rating}</span>
                 </div>
               </div>
             </div>
