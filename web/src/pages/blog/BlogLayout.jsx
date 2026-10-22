@@ -2,6 +2,21 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 
 const ARTICLES = [
   {
+    slug: "best-free-lic-premium-calculator-2026",
+    title: "Best Free LIC Premium Calculator 2026: What to Look For and How to Check Accuracy",
+    description: "How to pick the best free LIC premium calculator in 2026. Features that matter, how to verify a quote against your Benefit Illustration, and common mistakes.",
+  },
+  {
+    slug: "choose-right-lic-plan-for-family",
+    title: "How to Choose the Right LIC Plan for Your Family: A 5-Step Framework",
+    description: "Work out the cover your family needs, match goals to LIC plan types, check affordability and compare plans before you buy.",
+  },
+  {
+    slug: "lic-vs-private-life-insurance",
+    title: "LIC vs Private Life Insurance: An Honest Comparison Guide for 2026",
+    description: "LIC vs private insurers on sovereign guarantee, claim settlement, term premiums, savings plans, exit value and tax — and which suits you.",
+  },
+  {
     slug: "best-lic-plans-2026-comparison-guide",
     title: "Best LIC Plans 2026 — Comparison Guide",
     description: "Compare endowment, term, ULIP, and pension plans from LIC. Find the best plan for savings, protection, retirement, and child's future with premium and maturity details.",

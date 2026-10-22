@@ -94,6 +94,9 @@ import BlogInsurancePlanningNewlyweds from "./pages/blog/InsurancePlanningNewlyw
 import BlogLicTermInsurancePlans2026 from "./pages/blog/LicTermInsurancePlans2026";
 import BlogHealthVsLifeInsurance from "./pages/blog/HealthVsLifeInsurance";
 import BlogCalculateLifeInsuranceCoverage from "./pages/blog/CalculateLifeInsuranceCoverage";
+import BlogBestFreeLicPremiumCalculator2026 from "./pages/blog/BestFreeLicPremiumCalculator2026";
+import BlogChooseRightLicPlanForFamily from "./pages/blog/ChooseRightLicPlanForFamily";
+import BlogLicVsPrivateLifeInsurance from "./pages/blog/LicVsPrivateLifeInsurance";
 import InsurancePremiumEstimator from "./pages/InsurancePremiumEstimator";
 import PolicyComparisonTool from "./pages/PolicyComparisonTool";
 import ToolTracker from "./components/ToolTracker";
@@ -217,6 +220,9 @@ export default function App() {
             <Route path="lic-term-insurance-plans-2026" element={<BlogLicTermInsurancePlans2026 />} />
             <Route path="health-vs-life-insurance" element={<BlogHealthVsLifeInsurance />} />
             <Route path="calculate-life-insurance-coverage" element={<BlogCalculateLifeInsuranceCoverage />} />
+            <Route path="best-free-lic-premium-calculator-2026" element={<BlogBestFreeLicPremiumCalculator2026 />} />
+            <Route path="choose-right-lic-plan-for-family" element={<BlogChooseRightLicPlanForFamily />} />
+            <Route path="lic-vs-private-life-insurance" element={<BlogLicVsPrivateLifeInsurance />} />
           </Route>
         </Routes>
       </main>
