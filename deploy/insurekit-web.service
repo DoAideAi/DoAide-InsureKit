@@ -1,0 +1,25 @@
+[Unit]
+Description=DoAide InsureKit Web (static SPA)
+After=network.target docker.service
+Wants=docker.service
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/DoAide-InsureKit/web
+# Serves the prerendered dist/<route>/index.html pages; `serve -s` rewrote every
+# route to index.html, so all pages shared the homepage head and canonical.
+ExecStart=/usr/bin/node scripts/static-server.mjs --root /opt/DoAide-InsureKit/web/dist --host 172.18.0.1 --port 3064
+Restart=always
+RestartSec=5
+Environment=NODE_ENV=production
+
+NoNewPrivileges=true
+PrivateTmp=true
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=insurekit-web
+
+[Install]
+WantedBy=multi-user.target

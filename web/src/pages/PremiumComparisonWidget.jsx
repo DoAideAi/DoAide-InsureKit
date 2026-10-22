@@ -1,6 +1,7 @@
 import { useState, useMemo, useEffect } from "react";
 import { Link } from "react-router-dom";
 import SEOHead from "../components/SEOHead";
+import FAQ from "../components/FAQ";
 import { LIC_PLANS } from "../data/licPlans";
 import { calculatePremium } from "../utils/calcPremium";
 

@@ -733,7 +733,6 @@ function buildStructuredData(pathname, meta) {
     operatingSystem: "All",
     offers: { "@type": "Offer", price: "0", priceCurrency: "INR" },
     creator: { "@type": "Organization", name: "DoAide", url: "https://doaide.com" },
-    aggregateRating: { "@type": "AggregateRating", ratingValue: "4.8", ratingCount: "3600" },
   };
 
   const schemas = [base];
@@ -785,7 +784,7 @@ export default function SEOHead() {
     setMeta("name", "description", meta.description);
     setMeta("name", "keywords", meta.keywords);
 
-    const canonicalUrl = `${SITE_URL}${pathname === "/" ? "" : pathname}`;
+    const canonicalUrl = `${SITE_URL}${pathname}`;
     let canonical = document.querySelector("link[rel='canonical']");
     if (!canonical) {
       canonical = document.createElement("link");

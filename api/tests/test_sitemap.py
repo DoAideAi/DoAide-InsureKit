@@ -38,3 +38,11 @@ def test_sitemap_contains_all_tools(client):
         "/claim-settlement-ratio",
     ]:
         assert f"https://insure.doaide.com{path}" in r.text
+
+
+def test_robots_references_sitemap(client):
+    r = client.get("/robots.txt")
+    assert r.status_code == 200
+    assert "text/plain" in r.headers["content-type"]
+    assert "Sitemap: https://insure.doaide.com/sitemap.xml" in r.text
+    assert "Disallow: /api/" in r.text
