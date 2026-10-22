@@ -16,6 +16,10 @@ const FEATURES = [
   { feature: "Plan Recommender (AI-based)", insurekit: true, competitor: false },
   { feature: "Claim Estimator", insurekit: true, competitor: false },
   { feature: "FD/RD vs Insurance Calculator", insurekit: true, competitor: false },
+  { feature: "Retirement Planning Calculator", insurekit: true, competitor: false },
+  { feature: "Child Education Plan Calculator", insurekit: true, competitor: false },
+  { feature: "ULIP vs Mutual Fund Calculator", insurekit: true, competitor: false },
+  { feature: "Commission Tracker on Dashboard", insurekit: true, competitor: false },
   { feature: "Tax Benefit Calculator", insurekit: true, competitor: false },
   { feature: "Bonus History (10 years)", insurekit: true, competitor: false },
   { feature: "Policy Tracker", insurekit: true, competitor: true },
@@ -35,7 +39,7 @@ const FEATURES = [
 const FAQ_ITEMS = [
   {
     q: "How is InsureKit different from Perfect Agent Plus?",
-    a: "InsureKit is 100% free with no registration, has more calculators (loan, revival, claim, tax), a plan recommender, detailed plan pages, and works offline. Perfect Agent Plus requires a subscription for some features.",
+    a: "InsureKit is 100% free with no registration, has more calculators (loan, revival, claim, tax, retirement, child education, ULIP vs mutual fund), a plan recommender, detailed plan pages, and works offline. Perfect Agent Plus requires a subscription for some features.",
   },
   {
     q: "Is InsureKit as accurate as Perfect Agent Plus?",
@@ -43,8 +47,26 @@ const FAQ_ITEMS = [
   },
   {
     q: "Can I switch from Perfect Agent Plus to InsureKit?",
-    a: "Yes, InsureKit requires no migration. Just visit insure.doaide.com and start using it. You can manually add your client data to the Policy Tracker.",
+    a: "Yes, InsureKit requires no migration. Just visit insure.doaide.com and start using it. You can manually add your client data to the Policy Tracker, or bulk-import it from the Portfolio Import page.",
   },
+  {
+    q: "What does Perfect Agent Plus cost compared to InsureKit?",
+    a: "Perfect Agent Plus runs a freemium model where presentations and advanced features need a yearly subscription. InsureKit has no paid tier at all — every tool, including presentations and the commission tracker, is free.",
+  },
+  {
+    q: "Does InsureKit work on both mobile and desktop?",
+    a: "Yes. InsureKit is a web app, so it runs in any browser on any device, and can be installed to the home screen like a native app. There is nothing to download from an app store.",
+  },
+  {
+    q: "Is my client data safe on InsureKit?",
+    a: "Your data stays in your browser's local storage by default — it is never uploaded unless you sign in to enable cross-device sync. You can use every calculator without creating an account.",
+  },
+];
+
+const SWITCH_STEPS = [
+  { step: "1", title: "Open insure.doaide.com", desc: "No download, no signup. Works in any browser and installs to your home screen." },
+  { step: "2", title: "Import your book", desc: "Use Portfolio Import to bulk-add policies, or add them one by one in the Policy Tracker." },
+  { step: "3", title: "Check the dashboard", desc: "Renewals, birthdays, commission estimate and club progress appear automatically." },
 ];
 
 export default function VsPerfectAgentPlus() {
@@ -139,6 +161,37 @@ export default function VsPerfectAgentPlus() {
           <p>
             The biggest difference: InsureKit is completely free with no registration. Your data stays on your device,
             nothing is uploaded to any server, and every tool works offline. No subscription fees, no ads, ever.
+          </p>
+        </div>
+      </section>
+
+      <section className="panel p-6 mb-8">
+        <h2 className="text-lg font-bold text-white mb-4">Switching Takes Three Steps</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {SWITCH_STEPS.map((s) => (
+            <div key={s.step} className="panel-inner p-4">
+              <div className="text-signal text-2xl font-bold mb-2">{s.step}</div>
+              <div className="text-sm font-medium text-white mb-1">{s.title}</div>
+              <div className="text-xs text-white/50">{s.desc}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="panel p-6 mb-8">
+        <h2 className="text-lg font-bold text-white mb-4">Where Each Tool Wins</h2>
+        <div className="space-y-3 text-sm text-white/70">
+          <p>
+            <span className="text-white font-medium">Choose Perfect Agent Plus if</span> you want a packaged
+            mobile app with phone support and are comfortable paying a yearly subscription for presentation
+            features.
+          </p>
+          <p>
+            <span className="text-signal font-medium">Choose InsureKit if</span> you want every tool free —
+            including the calculators paid apps lock away: retirement and child education planning,
+            ULIP vs mutual fund comparisons, revival and loan quotes, and a dashboard that estimates your
+            commission and club progress from your tracked book. Your data stays on your device, and
+            everything works offline.
           </p>
         </div>
       </section>

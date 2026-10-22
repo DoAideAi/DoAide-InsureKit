@@ -595,6 +595,36 @@ const META = {
       { q: "What is Human Life Value?", a: "HLV is the present value of your future income, minus personal expenses. It represents the economic loss your family would face and is used to determine adequate life insurance cover." },
     ],
   },
+  "/retirement-calculator": {
+    title: "Retirement Planning Calculator India 2026 — Corpus & Monthly Savings | DoAide InsureKit",
+    description: "Calculate the retirement corpus you need and the monthly saving to get there. Inflation-adjusted expenses, LIC pension plan options — Jeevan Umang, New Jeevan Shanti, Saral Pension. Free.",
+    keywords: "retirement planning calculator, retirement corpus calculator India, how much to retire in India, LIC pension plan calculator, Jeevan Umang calculator, retirement savings calculator",
+    faq: [
+      { q: "How much retirement corpus do I need in India?", a: "Roughly 25-30× your annual expenses at retirement. The calculator inflates today's expenses to your retirement year and computes the exact corpus that funds them until life expectancy." },
+      { q: "Which LIC plans work for retirement?", a: "Jeevan Umang (745) pays 8% of SA yearly for life, New Jeevan Shanti (858) is a deferred annuity with locked-in rates, and Saral Pension (862) is an immediate annuity." },
+      { q: "What inflation rate should I assume for retirement?", a: "6% is a reasonable long-term assumption for India; use 7-8% to be conservative, since healthcare inflation runs higher." },
+    ],
+  },
+  "/child-education-calculator": {
+    title: "Child Education Plan Calculator — Future Cost & LIC Child Plans | DoAide InsureKit",
+    description: "Calculate the future cost of your child's education at 9% education inflation, the monthly saving needed, and the LIC child plan that guarantees the goal — Jeevan Lakshya, Jeevan Tarun, Amritbaal.",
+    keywords: "child education plan calculator, child education cost calculator India, LIC child plan calculator, Jeevan Lakshya calculator, education inflation calculator, child future planning",
+    faq: [
+      { q: "How much will education cost when my child turns 18?", a: "At 9% education inflation, a ₹16 lakh engineering degree today costs about ₹58 lakh in 15 years. The calculator shows the exact figure for your goal and timeline." },
+      { q: "Which LIC plan is best for child education?", a: "Jeevan Lakshya (733) is the most popular — if the parent dies, LIC pays 10% of SA yearly till maturity plus the full maturity benefit, so the goal survives." },
+      { q: "Why not just use a mutual fund SIP for education?", a: "A SIP builds the corpus only if the parent survives and keeps investing. A child plan with waiver-of-premium guarantees the goal even if the parent dies." },
+    ],
+  },
+  "/ulip-vs-mutual-fund-calculator": {
+    title: "ULIP vs Mutual Fund Calculator 2026 — Post-Tax Corpus Comparison | DoAide InsureKit",
+    description: "Compare ULIP and mutual fund SIP returns with real charges — allocation, admin, FMC, mortality vs expense ratio — and tax at exit (Section 10(10D) vs 12.5% LTCG). Free, honest comparison.",
+    keywords: "ULIP vs mutual fund calculator, ULIP vs SIP, ULIP returns calculator, ULIP charges comparison, LIC SIIP vs mutual fund, ULIP vs mutual fund which is better",
+    faq: [
+      { q: "Is ULIP better than mutual fund?", a: "It depends on charges, tenure and tax. ULIP maturity is tax-free under 10(10D) if annual premium is ≤ ₹2.5 lakh; mutual funds have lower costs but equity LTCG above ₹1.25 lakh is taxed at 12.5%. Run both with your numbers." },
+      { q: "Is ULIP maturity tax-free?", a: "Yes, under Section 10(10D) — but only if total annual premium is ₹2.5 lakh or less for policies issued after 1 Feb 2021." },
+      { q: "What charges does a ULIP have?", a: "Premium allocation (higher in year 1), policy administration, fund management (capped at 1.35%), and mortality charges. Online ULIPs like LIC SIIP charge far less than offline plans." },
+    ],
+  },
   "/premium-comparison": {
     title: "LIC Premium Comparison Widget — Embed on Your Website | DoAide InsureKit",
     description: "Compare LIC plan premiums across age, term, and sum assured. Embeddable widget for insurance blogs and websites. Free LIC premium comparison tool.",

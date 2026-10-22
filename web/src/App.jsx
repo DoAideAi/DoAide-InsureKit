@@ -103,6 +103,9 @@ const BlogLicVsPrivateLifeInsurance = lazy(() => import("./pages/blog/LicVsPriva
 const MarkdownPost = lazy(() => import("./pages/blog/MarkdownPost"));
 const InsurancePremiumEstimator = lazy(() => import("./pages/InsurancePremiumEstimator"));
 const PolicyComparisonTool = lazy(() => import("./pages/PolicyComparisonTool"));
+const RetirementCalculator = lazy(() => import("./pages/RetirementCalculator"));
+const ChildEducationCalculator = lazy(() => import("./pages/ChildEducationCalculator"));
+const UlipVsMutualFundCalculator = lazy(() => import("./pages/UlipVsMutualFundCalculator"));
 import ToolTracker from "./components/ToolTracker";
 import ReferralBanner from "./components/ReferralBanner";
 import FloatingPremiumWidget from "./components/FloatingPremiumWidget";
@@ -215,6 +218,9 @@ export default function App() {
           <Route path="/compare/lic-vs-sbi-life" element={<LicVsSbiLife />} />
           <Route path="/compare/term-vs-endowment" element={<TermVsEndowment />} />
           <Route path="/insurance-needs-calculator" element={<InsuranceNeedsCalculator />} />
+          <Route path="/retirement-calculator" element={<RetirementCalculator />} />
+          <Route path="/child-education-calculator" element={<ChildEducationCalculator />} />
+          <Route path="/ulip-vs-mutual-fund-calculator" element={<UlipVsMutualFundCalculator />} />
           <Route path="/premium-comparison" element={<PremiumComparisonWidget />} />
           <Route path="/tools/term-insurance-compare" element={<TermInsuranceCompare />} />
           <Route path="/tools/premium-estimator" element={<InsurancePremiumEstimator />} />

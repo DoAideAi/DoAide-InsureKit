@@ -64,6 +64,9 @@ const ROUTE_NAMES = {
   "/doctor-panel": "Doctor & Hospital Panel",
   "/business-card": "Business Card Creator",
   "/fd-rd-calculator": "FD/RD vs Insurance",
+  "/retirement-calculator": "Retirement Calculator",
+  "/child-education-calculator": "Child Education Calculator",
+  "/ulip-vs-mutual-fund-calculator": "ULIP vs Mutual Fund",
 };
 
 export default function Breadcrumb() {

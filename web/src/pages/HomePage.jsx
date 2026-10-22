@@ -112,6 +112,24 @@ const TOOL_CATEGORIES = [
         desc: "Calculate SA rebate & mode rebate savings — optimize premium cost",
         icon: "💡",
       },
+      {
+        path: "/retirement-calculator",
+        name: "Retirement Calculator",
+        desc: "Corpus needed to retire, monthly saving to get there & LIC pension options",
+        icon: "🏖️",
+      },
+      {
+        path: "/child-education-calculator",
+        name: "Child Education Calculator",
+        desc: "Future cost of education at 9% inflation & the LIC child plan that secures it",
+        icon: "🎓",
+      },
+      {
+        path: "/ulip-vs-mutual-fund-calculator",
+        name: "ULIP vs Mutual Fund",
+        desc: "Charge-by-charge, post-tax comparison — 10(10D) vs LTCG, honest answer",
+        icon: "⚖️",
+      },
     ],
   },
   {

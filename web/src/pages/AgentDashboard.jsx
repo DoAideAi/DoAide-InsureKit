@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { useClients } from "../hooks/useClients";
 import { usePolicies } from "../hooks/usePolicies";
+import { estimatePortfolioCommission } from "../utils/estimateCommission";
 import { formatINR } from "../utils/format";
 import FAQ from "../components/FAQ";
 
@@ -64,6 +65,8 @@ export default function AgentDashboard() {
       dueSoonCount: upcomingRenewals.filter((r) => r.daysUntil > 0 && r.daysUntil <= 7).length,
     };
   }, [policies, clients, upcomingRenewals]);
+
+  const commission = useMemo(() => estimatePortfolioCommission(policies), [policies]);
 
   const hasData = policies.length > 0 || clients.length > 0;
 
@@ -135,6 +138,48 @@ export default function AgentDashboard() {
               </Link>
             )}
           </div>
+
+          {/* Commission Tracker */}
+          {commission.details.length > 0 && (
+            <div className="panel p-4 mb-6">
+              <div className="flex items-center justify-between mb-3">
+                <div className="text-sm font-medium text-white">Commission Tracker</div>
+                <Link to="/commission-calculator" className="text-xs text-signal hover:text-signal-soft transition-colors no-underline">Full calculator</Link>
+              </div>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
+                <div className="panel-inner p-3 text-center">
+                  <div className="text-lg font-bold text-good">{formatINR(commission.fyc)}</div>
+                  <div className="text-[10px] text-white/30 uppercase tracking-wide">First-Year Comm.</div>
+                </div>
+                <div className="panel-inner p-3 text-center">
+                  <div className="text-lg font-bold text-white">{formatINR(commission.renewal)}</div>
+                  <div className="text-[10px] text-white/30 uppercase tracking-wide">Renewal Comm.</div>
+                </div>
+                <div className="panel-inner p-3 text-center">
+                  <div className="text-lg font-bold text-signal">{formatINR(commission.total)}</div>
+                  <div className="text-[10px] text-white/30 uppercase tracking-wide">Total This Year</div>
+                </div>
+                <div className="panel-inner p-3 text-center">
+                  <div className="text-lg font-bold text-white">{formatINR(commission.annualPremium)}</div>
+                  <div className="text-[10px] text-white/30 uppercase tracking-wide">Annualized Premium</div>
+                </div>
+              </div>
+              <div className="flex items-center justify-between text-xs mb-1.5">
+                <span className="text-white/50">{commission.currentSlab.label}</span>
+                {commission.nextSlab && (
+                  <span className="text-white/40">
+                    {formatINR(commission.amountToNext)} FYC to {commission.nextSlab.label}
+                  </span>
+                )}
+              </div>
+              <div className="h-2 rounded-full bg-white/5 overflow-hidden" role="progressbar" aria-valuenow={commission.progressPercent} aria-valuemin="0" aria-valuemax="100">
+                <div className="h-full rounded-full bg-signal transition-all" style={{ width: `${commission.progressPercent}%` }} />
+              </div>
+              <div className="mt-3 text-[10px] text-white/25">
+                Estimated from tracked policies using standard IRDAI commission rates (plan type inferred from name; first policy year earns the first-year rate). Actual commission depends on your agency terms.
+              </div>
+            </div>
+          )}
 
           {/* Upcoming Renewals */}
           {upcomingRenewals.length > 0 && (

@@ -32,7 +32,7 @@ describe("new plans", () => {
     expect(plan).toBeTruthy();
     expect(plan.tableNo).toBe(734);
     expect(plan.type).toBe("child");
-    expect(plan.srbRate).toBe(55);
+    expect(plan.srbRate).toBe(54);
   });
 
   it("includes Bima Jyoti 860", () => {
@@ -86,13 +86,13 @@ describe("getPlansForComparison", () => {
 describe("getSRBRate", () => {
   it("returns fixed SRB rate", () => {
     const plan = getPlan("jeevan_anand_715");
-    expect(getSRBRate(plan, 20)).toBe(45);
+    expect(getSRBRate(plan, 20)).toBe(44);
   });
 
   it("returns term-dependent SRB rate", () => {
     const plan = getPlan("new_endowment_714");
-    expect(getSRBRate(plan, 15)).toBe(42);
-    expect(getSRBRate(plan, 25)).toBe(48);
+    expect(getSRBRate(plan, 15)).toBe(41);
+    expect(getSRBRate(plan, 25)).toBe(47);
   });
 });
 

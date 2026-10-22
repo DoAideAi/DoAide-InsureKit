@@ -3,51 +3,51 @@ import { calculateMaturity, calculateIRR, calculateTotalPremiumsPaid, calculateS
 import { getPlan } from "../data/licPlans";
 
 describe("calculateMaturity", () => {
-  it("calculates Jeevan Anand maturity with SRB ₹45/1000", () => {
+  it("calculates Jeevan Anand maturity with SRB ₹44/1000 (2025-26 declared)", () => {
     const plan = getPlan("jeevan_anand_715");
     const result = calculateMaturity(plan, 1000000, 20);
-    expect(result.srbRate).toBe(45);
+    expect(result.srbRate).toBe(44);
     // With SA ≥ 10L, no extra slab bonus for Jeevan Anand (it has no saSlabBonus)
-    expect(result.totalBonus).toBe(900000); // 45/1000 * 1000000 * 20
-    // FAB for 20yr term = 25/1000 of total bonus = 25/1000 * 900000 = 22500
-    expect(result.fab).toBe(22500);
-    expect(result.maturityValue).toBe(1000000 + 900000 + 22500);
+    expect(result.totalBonus).toBe(880000); // 44/1000 * 1000000 * 20
+    // FAB for 20yr term = 25/1000 of total bonus = 25/1000 * 880000 = 22000
+    expect(result.fab).toBe(22000);
+    expect(result.maturityValue).toBe(1000000 + 880000 + 22000);
   });
 
   it("calculates New Endowment 714 with term-dependent SRB", () => {
     const plan = getPlan("new_endowment_714");
-    // 20yr term → base SRB ₹42, SA 5L gets +₹1 slab bonus = ₹43
+    // 20yr term → base SRB ₹41, SA 5L gets +₹1 slab bonus = ₹42
     const r20 = calculateMaturity(plan, 500000, 20);
-    expect(r20.srbRate).toBe(43);
+    expect(r20.srbRate).toBe(42);
     expect(r20.saSlabBonus).toBe(1);
-    expect(r20.totalBonus).toBe(430000); // 43/1000 * 500000 * 20
+    expect(r20.totalBonus).toBe(420000); // 42/1000 * 500000 * 20
 
-    // 25yr term → base SRB ₹48 + ₹1 slab = ₹49
+    // 25yr term → base SRB ₹47 + ₹1 slab = ₹48
     const r25 = calculateMaturity(plan, 500000, 25);
-    expect(r25.srbRate).toBe(49);
-    expect(r25.totalBonus).toBe(612500); // 49/1000 * 500000 * 25
+    expect(r25.srbRate).toBe(48);
+    expect(r25.totalBonus).toBe(600000); // 48/1000 * 500000 * 25
 
     // Small SA (no slab bonus)
     const r20small = calculateMaturity(plan, 200000, 20);
-    expect(r20small.srbRate).toBe(42);
+    expect(r20small.srbRate).toBe(41);
   });
 
   it("calculates Jeevan Labh with slab bonus for SA ≥ 10L", () => {
     const plan = getPlan("jeevan_labh_736");
     const result = calculateMaturity(plan, 1000000, 21);
-    // base SRB 37 + slab bonus 2 for SA ≥ 10L = 39
-    expect(result.srbRate).toBe(39);
+    // base SRB 36 + slab bonus 2 for SA ≥ 10L = 38
+    expect(result.srbRate).toBe(38);
     expect(result.saSlabBonus).toBe(2);
-    expect(result.totalBonus).toBe(819000); // 39/1000 * 1000000 * 21
+    expect(result.totalBonus).toBe(798000); // 38/1000 * 1000000 * 21
   });
 
   it("calculates Jeevan Labh FAB per 1000 of total bonus", () => {
     const plan = getPlan("jeevan_labh_736");
     const result = calculateMaturity(plan, 500000, 21);
-    // SRB 37/1000, no slab bonus at 5L
-    expect(result.totalBonus).toBe(388500); // 37 * 500 * 21
-    // FAB 80/1000 of totalBonus = 80/1000 * 388500 = 31080
-    expect(result.fab).toBe(31080);
+    // SRB 36/1000, no slab bonus at 5L
+    expect(result.totalBonus).toBe(378000); // 36 * 500 * 21
+    // FAB 80/1000 of totalBonus = 80/1000 * 378000 = 30240
+    expect(result.fab).toBe(30240);
   });
 
   it("handles Dhan Sanchay non-par plan", () => {
@@ -63,8 +63,8 @@ describe("calculateMaturity", () => {
     const result = calculateMaturity(plan, 1000000, 21);
     expect(result.maturityMultiplier).toBe(1.10);
     expect(result.baseSA).toBe(1100000);
-    // SRB 49/1000, FAB 60/1000 of total bonus
-    const expectedBonus = 49 * 1000 * 21; // 1029000
+    // SRB 48/1000, FAB 60/1000 of total bonus
+    const expectedBonus = 48 * 1000 * 21; // 1008000
     expect(result.totalBonus).toBe(expectedBonus);
     expect(result.maturityValue).toBe(1100000 + expectedBonus + Math.round(60 / 1000 * expectedBonus));
   });
