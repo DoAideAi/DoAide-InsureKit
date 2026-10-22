@@ -1,4 +1,5 @@
 import { Link, Outlet, useLocation } from "react-router-dom";
+import { MARKDOWN_POSTS } from "./markdownPosts";
 
 const ARTICLES = [
   {
@@ -110,7 +111,7 @@ export default function BlogLayout() {
 export function BlogIndex() {
   return (
     <div className="space-y-4">
-      {ARTICLES.map((a) => (
+      {[...MARKDOWN_POSTS, ...ARTICLES].map((a) => (
         <Link
           key={a.slug}
           to={`/blog/${a.slug}`}
