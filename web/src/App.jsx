@@ -1,4 +1,6 @@
+import { lazy, Suspense } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
+import ErrorBoundary from "./components/ErrorBoundary";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import SEOHead from "./components/SEOHead";
@@ -6,105 +8,114 @@ import Breadcrumb from "./components/Breadcrumb";
 import InstallPrompt from "./components/InstallPrompt";
 import SignUpBanner from "./components/SignUpBanner";
 import AuthCallbackHandler from "./components/AuthCallbackHandler";
-import LoginPage from "./pages/LoginPage";
-import ProfilePage from "./pages/ProfilePage";
+const LoginPage = lazy(() => import("./pages/LoginPage"));
+const ProfilePage = lazy(() => import("./pages/ProfilePage"));
 import HomePage from "./pages/HomePage";
-import PremiumCalculator from "./pages/PremiumCalculator";
-import MaturityCalculator from "./pages/MaturityCalculator";
-import PlanComparison from "./pages/PlanComparison";
-import CommissionCalculator from "./pages/CommissionCalculator";
-import TaxCalculator from "./pages/TaxCalculator";
-import PolicyTracker from "./pages/PolicyTracker";
-import BonusHistory from "./pages/BonusHistory";
-import MarketingGenerator from "./pages/MarketingGenerator";
-import ClientReminders from "./pages/ClientReminders";
-import ReceiptGenerator from "./pages/ReceiptGenerator";
-import RevivalCalculator from "./pages/RevivalCalculator";
-import SurrenderCalculator from "./pages/SurrenderCalculator";
-import LoanCalculator from "./pages/LoanCalculator";
-import PremiumCalendar from "./pages/PremiumCalendar";
-import ClaimEstimator from "./pages/ClaimEstimator";
-import PlanRecommender from "./pages/PlanRecommender";
-import CompareAnyPlans from "./pages/CompareAnyPlans";
-import GuidesIndex from "./pages/GuidesIndex";
-import GuideBestPlans2026 from "./pages/GuideBestPlans2026";
-import GuideCheckPolicyStatus from "./pages/GuideCheckPolicyStatus";
-import GuideBonusRatesHistory from "./pages/GuideBonusRatesHistory";
-import GuideReviveLapsedPolicy from "./pages/GuideReviveLapsedPolicy";
-import GuideLicPremiumPayment from "./pages/GuideLicPremiumPayment";
-import GuideLicPolicyStatus from "./pages/GuideLicPolicyStatus";
-import GuideLicMaturityAmount from "./pages/GuideLicMaturityAmount";
-import GuideLicLoanOnPolicy from "./pages/GuideLicLoanOnPolicy";
-import GuideLicSurrenderValue from "./pages/GuideLicSurrenderValue";
-import GuideLicAgentExam from "./pages/GuideLicAgentExam";
-import GuideLicClaimProcess from "./pages/GuideLicClaimProcess";
-import GuideLicTaxBenefits from "./pages/GuideLicTaxBenefits";
-import GuideBestLicPlansChild from "./pages/GuideBestLicPlansChild";
-import GuideBestTermPlan from "./pages/GuideBestTermPlan";
-import PlansDirectoryPage from "./pages/PlansDirectoryPage";
-import PlanDetailPage from "./pages/PlanDetailPage";
-import VsLicSuperSalesSaathi from "./pages/compare/VsLicSuperSalesSaathi";
-import VsPerfectAgentPlus from "./pages/compare/VsPerfectAgentPlus";
-import PremiumTable from "./pages/PremiumTable";
-import AgentDashboard from "./pages/AgentDashboard";
-import BestLicTools from "./pages/BestLicTools";
-import BestLicToolsCompare from "./pages/compare/BestLicTools";
-import PolicyMaturityTracker from "./pages/PolicyMaturityTracker";
-import GuideLicCommissionStructure from "./pages/GuideLicCommissionStructure";
-import GuideHowToBecomeAgent from "./pages/GuideHowToBecomeAgent";
-import GuideBestPlansForTaxSaving from "./pages/GuideBestPlansForTaxSaving";
-import GuideSection80D from "./pages/GuideSection80D";
-import GuideUlipVsMutualFund from "./pages/GuideUlipVsMutualFund";
-import ClaimSettlementRatio from "./pages/ClaimSettlementRatio";
-import SipVsInsurance from "./pages/SipVsInsurance";
-import PlanPresentation from "./pages/PlanPresentation";
-import PremiumDueRegister from "./pages/PremiumDueRegister";
-import BranchLocator from "./pages/BranchLocator";
-import ReportGenerator from "./pages/ReportGenerator";
-import PaidUpValueCalculator from "./pages/PaidUpValueCalculator";
-import InsuranceAgeCalculator from "./pages/InsuranceAgeCalculator";
-import RiderPremiumCalculator from "./pages/RiderPremiumCalculator";
-import RebateCalculator from "./pages/RebateCalculator";
-import SelfMixPresentation from "./pages/SelfMixPresentation";
-import FamilyMixPresentation from "./pages/FamilyMixPresentation";
-import BudgetPresentation from "./pages/BudgetPresentation";
-import ClubQualification from "./pages/ClubQualification";
-import GreetingCardCreator from "./pages/GreetingCardCreator";
-import DoctorPanelLocator from "./pages/DoctorPanelLocator";
-import BusinessCardCreator from "./pages/BusinessCardCreator";
-import FdRdCalculator from "./pages/FdRdCalculator";
-import EmbedPremiumCalculator from "./pages/EmbedPremiumCalculator";
-import PortfolioImport from "./pages/PortfolioImport";
-import LicVsSbiLife from "./pages/compare/LicVsSbiLife";
-import TermVsEndowment from "./pages/compare/TermVsEndowment";
-import InsuranceNeedsCalculator from "./pages/InsuranceNeedsCalculator";
-import PremiumComparisonWidget from "./pages/PremiumComparisonWidget";
-import TermInsuranceCompare from "./pages/TermInsuranceCompare";
-import BlogLayout, { BlogIndex } from "./pages/blog/BlogLayout";
-import BlogBestLicPlans2026 from "./pages/blog/BestLicPlans2026";
-import BlogLicPremiumCalculatorGuide from "./pages/blog/LicPremiumCalculatorGuide";
-import BlogFdVsRdVsLic from "./pages/blog/FdVsRdVsLic";
-import BlogLicBonusRates2026 from "./pages/blog/LicBonusRates2026";
-import BlogBestLicPlansChildEducation2026 from "./pages/blog/BestLicPlansChildEducation2026";
-import BlogLicMaturityClaimOnline from "./pages/blog/LicMaturityClaimOnline";
-import BlogLicSurrenderValueCalculatorGuide from "./pages/blog/LicSurrenderValueCalculatorGuide";
-import BlogHowMuchLifeInsurance from "./pages/blog/HowMuchLifeInsurance";
-import BlogTermVsWholeLife from "./pages/blog/TermVsWholeLife";
-import BlogInsurancePlanningNewlyweds from "./pages/blog/InsurancePlanningNewlyweds";
-import BlogLicTermInsurancePlans2026 from "./pages/blog/LicTermInsurancePlans2026";
-import BlogHealthVsLifeInsurance from "./pages/blog/HealthVsLifeInsurance";
-import BlogCalculateLifeInsuranceCoverage from "./pages/blog/CalculateLifeInsuranceCoverage";
-import BlogBestFreeLicPremiumCalculator2026 from "./pages/blog/BestFreeLicPremiumCalculator2026";
-import BlogChooseRightLicPlanForFamily from "./pages/blog/ChooseRightLicPlanForFamily";
-import BlogLicVsPrivateLifeInsurance from "./pages/blog/LicVsPrivateLifeInsurance";
-import MarkdownPost from "./pages/blog/MarkdownPost";
-import InsurancePremiumEstimator from "./pages/InsurancePremiumEstimator";
-import PolicyComparisonTool from "./pages/PolicyComparisonTool";
+const PremiumCalculator = lazy(() => import("./pages/PremiumCalculator"));
+const MaturityCalculator = lazy(() => import("./pages/MaturityCalculator"));
+const PlanComparison = lazy(() => import("./pages/PlanComparison"));
+const CommissionCalculator = lazy(() => import("./pages/CommissionCalculator"));
+const TaxCalculator = lazy(() => import("./pages/TaxCalculator"));
+const PolicyTracker = lazy(() => import("./pages/PolicyTracker"));
+const BonusHistory = lazy(() => import("./pages/BonusHistory"));
+const MarketingGenerator = lazy(() => import("./pages/MarketingGenerator"));
+const ClientReminders = lazy(() => import("./pages/ClientReminders"));
+const ReceiptGenerator = lazy(() => import("./pages/ReceiptGenerator"));
+const RevivalCalculator = lazy(() => import("./pages/RevivalCalculator"));
+const SurrenderCalculator = lazy(() => import("./pages/SurrenderCalculator"));
+const LoanCalculator = lazy(() => import("./pages/LoanCalculator"));
+const PremiumCalendar = lazy(() => import("./pages/PremiumCalendar"));
+const ClaimEstimator = lazy(() => import("./pages/ClaimEstimator"));
+const PlanRecommender = lazy(() => import("./pages/PlanRecommender"));
+const CompareAnyPlans = lazy(() => import("./pages/CompareAnyPlans"));
+const GuidesIndex = lazy(() => import("./pages/GuidesIndex"));
+const GuideBestPlans2026 = lazy(() => import("./pages/GuideBestPlans2026"));
+const GuideCheckPolicyStatus = lazy(() => import("./pages/GuideCheckPolicyStatus"));
+const GuideBonusRatesHistory = lazy(() => import("./pages/GuideBonusRatesHistory"));
+const GuideReviveLapsedPolicy = lazy(() => import("./pages/GuideReviveLapsedPolicy"));
+const GuideLicPremiumPayment = lazy(() => import("./pages/GuideLicPremiumPayment"));
+const GuideLicPolicyStatus = lazy(() => import("./pages/GuideLicPolicyStatus"));
+const GuideLicMaturityAmount = lazy(() => import("./pages/GuideLicMaturityAmount"));
+const GuideLicLoanOnPolicy = lazy(() => import("./pages/GuideLicLoanOnPolicy"));
+const GuideLicSurrenderValue = lazy(() => import("./pages/GuideLicSurrenderValue"));
+const GuideLicAgentExam = lazy(() => import("./pages/GuideLicAgentExam"));
+const GuideLicClaimProcess = lazy(() => import("./pages/GuideLicClaimProcess"));
+const GuideLicTaxBenefits = lazy(() => import("./pages/GuideLicTaxBenefits"));
+const GuideBestLicPlansChild = lazy(() => import("./pages/GuideBestLicPlansChild"));
+const GuideBestTermPlan = lazy(() => import("./pages/GuideBestTermPlan"));
+const PlansDirectoryPage = lazy(() => import("./pages/PlansDirectoryPage"));
+const PlanDetailPage = lazy(() => import("./pages/PlanDetailPage"));
+const VsLicSuperSalesSaathi = lazy(() => import("./pages/compare/VsLicSuperSalesSaathi"));
+const VsPerfectAgentPlus = lazy(() => import("./pages/compare/VsPerfectAgentPlus"));
+const PremiumTable = lazy(() => import("./pages/PremiumTable"));
+const AgentDashboard = lazy(() => import("./pages/AgentDashboard"));
+const BestLicTools = lazy(() => import("./pages/BestLicTools"));
+const BestLicToolsCompare = lazy(() => import("./pages/compare/BestLicTools"));
+const PolicyMaturityTracker = lazy(() => import("./pages/PolicyMaturityTracker"));
+const GuideLicCommissionStructure = lazy(() => import("./pages/GuideLicCommissionStructure"));
+const GuideHowToBecomeAgent = lazy(() => import("./pages/GuideHowToBecomeAgent"));
+const GuideBestPlansForTaxSaving = lazy(() => import("./pages/GuideBestPlansForTaxSaving"));
+const GuideSection80D = lazy(() => import("./pages/GuideSection80D"));
+const GuideUlipVsMutualFund = lazy(() => import("./pages/GuideUlipVsMutualFund"));
+const ClaimSettlementRatio = lazy(() => import("./pages/ClaimSettlementRatio"));
+const SipVsInsurance = lazy(() => import("./pages/SipVsInsurance"));
+const PlanPresentation = lazy(() => import("./pages/PlanPresentation"));
+const PremiumDueRegister = lazy(() => import("./pages/PremiumDueRegister"));
+const BranchLocator = lazy(() => import("./pages/BranchLocator"));
+const ReportGenerator = lazy(() => import("./pages/ReportGenerator"));
+const PaidUpValueCalculator = lazy(() => import("./pages/PaidUpValueCalculator"));
+const InsuranceAgeCalculator = lazy(() => import("./pages/InsuranceAgeCalculator"));
+const RiderPremiumCalculator = lazy(() => import("./pages/RiderPremiumCalculator"));
+const RebateCalculator = lazy(() => import("./pages/RebateCalculator"));
+const SelfMixPresentation = lazy(() => import("./pages/SelfMixPresentation"));
+const FamilyMixPresentation = lazy(() => import("./pages/FamilyMixPresentation"));
+const BudgetPresentation = lazy(() => import("./pages/BudgetPresentation"));
+const ClubQualification = lazy(() => import("./pages/ClubQualification"));
+const GreetingCardCreator = lazy(() => import("./pages/GreetingCardCreator"));
+const DoctorPanelLocator = lazy(() => import("./pages/DoctorPanelLocator"));
+const BusinessCardCreator = lazy(() => import("./pages/BusinessCardCreator"));
+const FdRdCalculator = lazy(() => import("./pages/FdRdCalculator"));
+const EmbedPremiumCalculator = lazy(() => import("./pages/EmbedPremiumCalculator"));
+const PortfolioImport = lazy(() => import("./pages/PortfolioImport"));
+const LicVsSbiLife = lazy(() => import("./pages/compare/LicVsSbiLife"));
+const TermVsEndowment = lazy(() => import("./pages/compare/TermVsEndowment"));
+const InsuranceNeedsCalculator = lazy(() => import("./pages/InsuranceNeedsCalculator"));
+const PremiumComparisonWidget = lazy(() => import("./pages/PremiumComparisonWidget"));
+const TermInsuranceCompare = lazy(() => import("./pages/TermInsuranceCompare"));
+const BlogLayout = lazy(() => import("./pages/blog/BlogLayout"));
+const BlogIndex = lazy(() => import("./pages/blog/BlogLayout").then((m) => ({ default: m.BlogIndex })));
+const BlogBestLicPlans2026 = lazy(() => import("./pages/blog/BestLicPlans2026"));
+const BlogLicPremiumCalculatorGuide = lazy(() => import("./pages/blog/LicPremiumCalculatorGuide"));
+const BlogFdVsRdVsLic = lazy(() => import("./pages/blog/FdVsRdVsLic"));
+const BlogLicBonusRates2026 = lazy(() => import("./pages/blog/LicBonusRates2026"));
+const BlogBestLicPlansChildEducation2026 = lazy(() => import("./pages/blog/BestLicPlansChildEducation2026"));
+const BlogLicMaturityClaimOnline = lazy(() => import("./pages/blog/LicMaturityClaimOnline"));
+const BlogLicSurrenderValueCalculatorGuide = lazy(() => import("./pages/blog/LicSurrenderValueCalculatorGuide"));
+const BlogHowMuchLifeInsurance = lazy(() => import("./pages/blog/HowMuchLifeInsurance"));
+const BlogTermVsWholeLife = lazy(() => import("./pages/blog/TermVsWholeLife"));
+const BlogInsurancePlanningNewlyweds = lazy(() => import("./pages/blog/InsurancePlanningNewlyweds"));
+const BlogLicTermInsurancePlans2026 = lazy(() => import("./pages/blog/LicTermInsurancePlans2026"));
+const BlogHealthVsLifeInsurance = lazy(() => import("./pages/blog/HealthVsLifeInsurance"));
+const BlogCalculateLifeInsuranceCoverage = lazy(() => import("./pages/blog/CalculateLifeInsuranceCoverage"));
+const BlogBestFreeLicPremiumCalculator2026 = lazy(() => import("./pages/blog/BestFreeLicPremiumCalculator2026"));
+const BlogChooseRightLicPlanForFamily = lazy(() => import("./pages/blog/ChooseRightLicPlanForFamily"));
+const BlogLicVsPrivateLifeInsurance = lazy(() => import("./pages/blog/LicVsPrivateLifeInsurance"));
+const MarkdownPost = lazy(() => import("./pages/blog/MarkdownPost"));
+const InsurancePremiumEstimator = lazy(() => import("./pages/InsurancePremiumEstimator"));
+const PolicyComparisonTool = lazy(() => import("./pages/PolicyComparisonTool"));
 import ToolTracker from "./components/ToolTracker";
 import ReferralBanner from "./components/ReferralBanner";
 import FloatingPremiumWidget from "./components/FloatingPremiumWidget";
 import FeedbackWidget from "./components/FeedbackWidget";
 import AiAdvisor from "./components/AiAdvisor";
+
+function RouteLoader() {
+  return (
+    <div data-route-loading className="flex items-center justify-center py-24" role="status" aria-label="Loading page">
+      <div className="w-8 h-8 rounded-full border-2 border-signal/30 border-t-signal animate-spin" />
+    </div>
+  );
+}
 
 export default function App() {
   const { pathname } = useLocation();
@@ -113,9 +124,11 @@ export default function App() {
 
   if (isEmbed) {
     return (
-      <Routes>
-        <Route path="/embed/premium-calculator" element={<EmbedPremiumCalculator />} />
-      </Routes>
+      <Suspense fallback={null}>
+        <Routes>
+          <Route path="/embed/premium-calculator" element={<EmbedPremiumCalculator />} />
+        </Routes>
+      </Suspense>
     );
   }
 
@@ -127,6 +140,8 @@ export default function App() {
       <ToolTracker />
       <main className="flex-1 max-w-4xl w-full mx-auto px-4 py-6">
         <SignUpBanner />
+        <ErrorBoundary>
+        <Suspense fallback={<RouteLoader />}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
@@ -225,6 +240,8 @@ export default function App() {
             <Route path=":slug" element={<MarkdownPost />} />
           </Route>
         </Routes>
+        </Suspense>
+        </ErrorBoundary>
       </main>
       <Footer />
       <InstallPrompt />
