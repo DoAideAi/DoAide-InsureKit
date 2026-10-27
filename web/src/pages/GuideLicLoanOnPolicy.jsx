@@ -44,7 +44,7 @@ const TOC = [
 
 const RELATED_GUIDES = [
   { path: "/guides/lic-surrender-value", title: "LIC Surrender Value Guide" },
-  { path: "/guides/lic-maturity-amount", title: "How to Check LIC Maturity Amount" },
+  { path: "/guides/lic-maturity-amount-check", title: "How to Check LIC Maturity Amount" },
   { path: "/guides/lic-claim-process", title: "LIC Claim Process Guide" },
 ];
 

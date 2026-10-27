@@ -48,9 +48,9 @@ const TOC = [
 ];
 
 const RELATED_GUIDES = [
-  { path: "/guides/lic-premium-payment", title: "LIC Premium Payment Methods" },
+  { path: "/guides/lic-premium-payment-online", title: "LIC Premium Payment Methods" },
   { path: "/guides/best-term-insurance-plan", title: "Best Term Insurance Plans 2026" },
-  { path: "/guides/lic-maturity-amount", title: "How to Check LIC Maturity Amount" },
+  { path: "/guides/lic-maturity-amount-check", title: "How to Check LIC Maturity Amount" },
 ];
 
 const RELATED_TOOLS = [

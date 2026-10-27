@@ -52,15 +52,15 @@ const TOC = [
 ];
 
 const RELATED_GUIDES = [
-  { path: "/guides/best-term-plan", title: "Best Term Insurance Plans in India" },
-  { path: "/guides/best-lic-plans-child", title: "Best LIC Plans for Child" },
+  { path: "/guides/best-term-insurance-plan", title: "Best Term Insurance Plans in India" },
+  { path: "/guides/best-lic-plans-for-child", title: "Best LIC Plans for Child" },
 ];
 
 const RELATED_TOOLS = [
   { path: "/commission-calculator", label: "Commission Calculator" },
   { path: "/premium-calculator", label: "Premium Calculator" },
   { path: "/plan-recommender", label: "Plan Recommender" },
-  { path: "/marketing-generator", label: "Marketing Generator" },
+  { path: "/marketing", label: "Marketing Generator" },
 ];
 
 export default function GuideLicAgentExam() {
@@ -630,7 +630,7 @@ export default function GuideLicAgentExam() {
               Create professional marketing materials for WhatsApp, social media, and print.
               Generate plan comparison images, festival greetings, and client testimonial templates.
             </p>
-            <Link to="/marketing-generator" className="text-signal text-sm font-semibold hover:underline no-underline">
+            <Link to="/marketing" className="text-signal text-sm font-semibold hover:underline no-underline">
               Open Marketing Generator &rarr;
             </Link>
           </div>

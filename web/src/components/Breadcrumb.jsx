@@ -69,6 +69,10 @@ const ROUTE_NAMES = {
   "/ulip-vs-mutual-fund-calculator": "ULIP vs Mutual Fund",
 };
 
+// Path prefixes with no page of their own (/compare/x and /tools/x exist, /compare
+// and /tools do not), shown as plain text so the trail never links to a 404.
+const NO_PAGE = new Set(["/compare", "/tools"]);
+
 export default function Breadcrumb() {
   const { pathname } = useLocation();
   if (pathname === "/") return null;
@@ -96,7 +100,7 @@ export default function Breadcrumb() {
                   <path d="M9 18l6-6-6-6" />
                 </svg>
               )}
-              {i === crumbs.length - 1 ? (
+              {i === crumbs.length - 1 || NO_PAGE.has(crumb.path) ? (
                 <span className="text-white/60">{crumb.label}</span>
               ) : (
                 <Link to={crumb.path} className="hover:text-white/60 transition-colors no-underline">

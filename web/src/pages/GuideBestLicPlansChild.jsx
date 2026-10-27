@@ -48,7 +48,7 @@ const TOC = [
 const RELATED_GUIDES = [
   { path: "/guides/best-lic-plans-2026", title: "Best LIC Plans 2026" },
   { path: "/guides/lic-tax-benefits", title: "LIC Tax Benefits Guide" },
-  { path: "/guides/lic-premium-payment", title: "LIC Premium Payment Methods" },
+  { path: "/guides/lic-premium-payment-online", title: "LIC Premium Payment Methods" },
 ];
 
 const RELATED_TOOLS = [

@@ -1,6 +1,6 @@
 const DOAIDE_PRODUCTS = [
   { icon: "\u{1F3F7}️", name: "GST Bot", url: "https://gst.doaide.com", desc: "GST filing & compliance" },
-  { icon: "\u{1F4CA}", name: "409A", url: "https://409a.doaide.com", desc: "Startup valuations" },
+  { icon: "\u{1F4CA}", name: "409A", url: "https://409.doaide.com", desc: "Startup valuations" },
   { icon: "\u{1F4C8}", name: "Pulse", url: "https://pulse.doaide.com", desc: "Newsletter growth tools" },
   { icon: "\u{1FA7A}", name: "Med", url: "https://med.doaide.com", desc: "Medical tools" },
   { icon: "\u{1F4BC}", name: "Job", url: "https://job.doaide.com", desc: "Job search & career" },

@@ -49,7 +49,7 @@ const TOC = [
 
 const RELATED_GUIDES = [
   { path: "/guides/lic-policy-status-check", title: "How to Check LIC Policy Status" },
-  { path: "/guides/lic-maturity-amount", title: "How to Check LIC Maturity Amount" },
+  { path: "/guides/lic-maturity-amount-check", title: "How to Check LIC Maturity Amount" },
   { path: "/guides/lic-surrender-value", title: "LIC Surrender Value Guide" },
 ];
 
