@@ -3,6 +3,7 @@ import SEOHead from "../components/SEOHead";
 import FAQ from "../components/FAQ";
 import WhatsAppShare from "../components/WhatsAppShare";
 import { TERM_PLANS, estimateTermPremium } from "../data/termInsuranceData";
+import { trackCalculation } from "../lib/analytics";
 
 const FAQ_ITEMS = [
   {
@@ -62,6 +63,10 @@ export default function TermInsuranceCompare() {
       return 0;
     });
   }, [age, gender, isSmoker, coverAmount, term, sortBy]);
+
+  useEffect(() => {
+    if (results.length > 0) trackCalculation('term-insurance-compare', { age, gender, coverAmount, term });
+  }, [results, age, gender, coverAmount, term]);
 
   const cheapest = results[0]?.premium;
 

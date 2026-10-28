@@ -1,9 +1,10 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { formatINR, formatLakh } from "../utils/format";
 import ResultCard from "../components/ResultCard";
 import FAQ from "../components/FAQ";
 import HowItWorks from "../components/HowItWorks";
 import ShareButtons from "../components/ShareButtons";
+import { trackCalculation } from "../lib/analytics";
 
 const CLUBS = [
   {
@@ -80,6 +81,7 @@ function ProgressBar({ current, target, label }) {
 }
 
 export default function ClubQualification() {
+  useEffect(() => { trackCalculation('club-qualification'); }, []);
   const [policies, setPolicies] = useState(0);
   const [fyp, setFyp] = useState(0);
   const [lives, setLives] = useState(0);

@@ -6,6 +6,7 @@ import {
   trackReferral,
   TOOL_MAP,
 } from "../utils/doaideViral";
+import { trackCTA, trackShare } from "../lib/analytics";
 
 const SITE_URL = "https://insure.doaide.com";
 const PRODUCT_NAME = "InsureKit";
@@ -149,6 +150,7 @@ export default function ReferralBanner() {
   const handleDismiss = () => {
     setVisible(false);
     dismissReferralBanner();
+    trackCTA('referral-banner-dismiss');
   };
 
   const handleCopy = async () => {
@@ -203,19 +205,21 @@ export default function ReferralBanner() {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackShare('whatsapp', 'referral-banner')}
               style={{ ...styles.btnBase, ...styles.whatsapp }}
             >
               {WHATSAPP_SVG} WhatsApp
             </a>
             <a
               href={emailUrl}
+              onClick={() => trackShare('email', 'referral-banner')}
               style={{ ...styles.btnBase, ...styles.email }}
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
               Email
             </a>
             <button
-              onClick={handleCopy}
+              onClick={() => { trackShare('copy', 'referral-banner'); handleCopy(); }}
               style={{ ...styles.btnBase, ...styles.copy }}
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -227,6 +231,7 @@ export default function ReferralBanner() {
               href={twitterUrl}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackShare('twitter', 'referral-banner')}
               style={{ ...styles.btnBase, ...styles.twitter }}
             >
               {X_SVG} X

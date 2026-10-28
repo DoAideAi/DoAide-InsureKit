@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { MODE_LABELS, MODE_FACTORS } from "../data/licPlans";
 import { calculatePremiumDueDates } from "../utils/calcPremiumDue";
 import { formatINR } from "../utils/format";
@@ -6,6 +6,7 @@ import ShareButtons from "../components/ShareButtons";
 import PrintButton from "../components/PrintButton";
 import HowItWorks from "../components/HowItWorks";
 import FAQ from "../components/FAQ";
+import { trackEvent } from "../lib/analytics";
 
 const HOW_IT_WORKS = [
   { title: "Enter policy details", desc: "Start date, premium, and payment mode" },
@@ -21,6 +22,7 @@ const FAQ_ITEMS = [
 ];
 
 export default function PremiumCalendar() {
+  useEffect(() => { trackEvent('tool:view', { tool: 'premium-calendar' }); }, []);
   const [startDate, setStartDate] = useState("");
   const [annualPremium, setAnnualPremium] = useState(50000);
   const [mode, setMode] = useState("yearly");

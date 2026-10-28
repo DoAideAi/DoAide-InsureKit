@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { LIC_PLANS, PLAN_TYPES, getSRBRate } from "../data/licPlans";
 import { calculatePremium } from "../utils/calcPremium";
 import {
@@ -13,6 +13,7 @@ import ShareButtons from "../components/ShareButtons";
 import PrintButton from "../components/PrintButton";
 import FAQ from "../components/FAQ";
 import HowItWorks from "../components/HowItWorks";
+import { trackCalculation } from "../lib/analytics";
 
 
 const HOW_IT_WORKS = [
@@ -77,6 +78,10 @@ export default function MaturityCalculator() {
     if (!plan) return [];
     return calculateSurvivalBenefits(plan, sumAssured);
   }, [plan, sumAssured]);
+
+  useEffect(() => {
+    if (matResult && premResult) trackCalculation('maturity-calculator', { plan: plan?.name, term, sumAssured });
+  }, [matResult, premResult, plan?.name, term, sumAssured]);
 
   const shareText =
     matResult && premResult

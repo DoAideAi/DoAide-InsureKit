@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { trackEvent } from "../lib/analytics";
 
 const SUGGESTED_QUESTIONS = [
   "Which LIC plan has highest bonus?",
@@ -37,6 +38,7 @@ export default function AiAdvisor() {
   const send = async (text) => {
     if (!text.trim() || loading) return;
     const userMsg = { role: "user", text: text.trim() };
+    trackEvent('ai-advisor:ask', { questionLength: text.trim().length, messageCount: messages.length + 1 });
     const next = [...messages, userMsg];
     setMessages(next);
     setInput("");

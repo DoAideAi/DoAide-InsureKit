@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { usePolicies } from "../hooks/usePolicies";
 import { LIC_PLANS, getSRBRate } from "../data/licPlans";
 import { formatINR } from "../utils/format";
@@ -6,6 +6,7 @@ import FAQ from "../components/FAQ";
 import HowItWorks from "../components/HowItWorks";
 import PrintButton from "../components/PrintButton";
 import ShareButtons from "../components/ShareButtons";
+import { trackEvent } from "../lib/analytics";
 
 const HOW_IT_WORKS = [
   { title: "Add policies", desc: "Use Policy Tracker to add policies with start date and term" },
@@ -46,6 +47,7 @@ function estimateMaturity(policy) {
 }
 
 export default function PolicyMaturityTracker() {
+  useEffect(() => { trackEvent('tool:view', { tool: 'policy-maturity-tracker' }); }, []);
   const { policies: rawPolicies, loading } = usePolicies();
   const [filter, setFilter] = useState("all");
   const [sortBy, setSortBy] = useState("date");

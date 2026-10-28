@@ -1,7 +1,8 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import ShareButtons from "../components/ShareButtons";
 import FAQ from "../components/FAQ";
 import HowItWorks from "../components/HowItWorks";
+import { trackEvent } from "../lib/analytics";
 
 const OCCASIONS = [
   { id: "birthday", label: "Birthday", emoji: "🎂", templates: [
@@ -63,6 +64,7 @@ const FAQ_ITEMS = [
 ];
 
 export default function GreetingCardCreator() {
+  useEffect(() => { trackEvent('tool:view', { tool: 'greeting-card-creator' }); }, []);
   const [occasion, setOccasion] = useState("birthday");
   const [templateIdx, setTemplateIdx] = useState(0);
   const [clientName, setClientName] = useState("");

@@ -1,9 +1,10 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { getAllBonusPlans, getBonusHistory } from "../data/bonusHistory";
 import ShareButtons from "../components/ShareButtons";
 import PrintButton from "../components/PrintButton";
 import FAQ from "../components/FAQ";
 import HowItWorks from "../components/HowItWorks";
+import { trackEvent } from "../lib/analytics";
 
 const allPlans = getAllBonusPlans();
 
@@ -30,6 +31,10 @@ export default function BonusHistory() {
     () => getBonusHistory(selectedPlanId),
     [selectedPlanId],
   );
+
+  useEffect(() => {
+    if (selectedPlan) trackEvent('lookup:bonus-history', { plan: selectedPlan.planName });
+  }, [selectedPlan]);
 
   const shareText = selectedPlan
     ? `LIC Bonus History — ${selectedPlan.planName} (Table ${selectedPlan.tableNo})\n\n${selectedPlan.history.map((h) => `${h.year}: ₹${h.rate}/1000 SA`).join("\n")}\n\n— DoAide InsureKit (insure.doaide.com)`

@@ -1,7 +1,8 @@
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import ShareButtons from "../components/ShareButtons";
 import FAQ from "../components/FAQ";
 import HowItWorks from "../components/HowItWorks";
+import { trackEvent } from "../lib/analytics";
 
 const CARD_THEMES = [
   { id: "classic_blue", name: "Classic Blue", primary: "#1e3a5f", accent: "#4a90d9", bg: "#f0f4f8", text: "#1a1a2e" },
@@ -100,6 +101,7 @@ function CardPreview({ data, theme }) {
 }
 
 export default function BusinessCardCreator() {
+  useEffect(() => { trackEvent('tool:view', { tool: 'business-card-creator' }); }, []);
   const [name, setName] = useState("");
   const [designation, setDesignation] = useState("LIC Agent");
   const [agentCode, setAgentCode] = useState("");

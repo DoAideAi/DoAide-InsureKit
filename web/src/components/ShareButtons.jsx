@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import { trackShare } from "../lib/analytics";
 
 export default function ShareButtons({ text, url, toolName = "this tool" }) {
   const [copied, setCopied] = useState(false);
@@ -20,6 +21,7 @@ export default function ShareButtons({ text, url, toolName = "this tool" }) {
       document.execCommand("copy");
       document.body.removeChild(ta);
     }
+    trackShare('copy', toolName);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -37,6 +39,7 @@ export default function ShareButtons({ text, url, toolName = "this tool" }) {
         href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
+        onClick={() => trackShare('whatsapp', toolName)}
         className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold bg-[#25D366]/15 text-[#25D366] hover:bg-[#25D366]/25 transition-colors no-underline no-print"
       >
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -48,6 +51,7 @@ export default function ShareButtons({ text, url, toolName = "this tool" }) {
         href={twitterUrl}
         target="_blank"
         rel="noopener noreferrer"
+        onClick={() => trackShare('twitter', toolName)}
         className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold bg-white/5 text-white/70 hover:bg-white/10 hover:text-white transition-colors no-underline no-print"
       >
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">

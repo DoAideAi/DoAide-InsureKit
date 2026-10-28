@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { LIC_PLANS } from "../data/licPlans";
 import { calculatePremium } from "../utils/calcPremium";
 import { calculateMaturity } from "../utils/calcMaturity";
@@ -7,6 +7,7 @@ import PrintButton from "../components/PrintButton";
 import ShareButtons from "../components/ShareButtons";
 import FAQ from "../components/FAQ";
 import HowItWorks from "../components/HowItWorks";
+import { trackEvent } from "../lib/analytics";
 
 const HOW_IT_WORKS = [
   { title: "Enter client details", desc: "Set client name and age" },
@@ -78,6 +79,10 @@ export default function SelfMixPresentation() {
     }
     return { totalSA, totalAnnual, totalPaid, totalMaturity };
   }, [results, policies]);
+
+  useEffect(() => {
+    if (results.some(r => r?.premium)) trackEvent('presentation:generate', { tool: 'self-mix', count: results.filter(r => r?.premium).length });
+  }, [results]);
 
   const shareText = `📋 Self Mix — Portfolio Presentation\n${clientName ? `Client: ${clientName}, ` : ""}Age: ${age}\n\n${results.map((r, i) => r?.premium ? `${i + 1}. ${r.plan.name}: SA ${formatINR(policies[i].sumAssured)}, Premium ${formatINR(r.premium.annualPremium)}/yr` : "").filter(Boolean).join("\n")}\n\nTotal SA: ${formatINR(totals.totalSA)}\nTotal Premium: ${formatINR(totals.totalAnnual)}/yr\nEst. Maturity: ${formatLakh(totals.totalMaturity)}\n\n— DoAide InsureKit (insure.doaide.com)`;
 

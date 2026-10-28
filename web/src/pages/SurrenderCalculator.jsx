@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { LIC_PLANS, PLAN_TYPES, getSRBRate } from "../data/licPlans";
 import { calculatePremium } from "../utils/calcPremium";
 import { calculateSurrenderValue } from "../utils/calcSurrender";
@@ -8,6 +8,7 @@ import ShareButtons from "../components/ShareButtons";
 import PrintButton from "../components/PrintButton";
 import FAQ from "../components/FAQ";
 import HowItWorks from "../components/HowItWorks";
+import { trackCalculation } from "../lib/analytics";
 
 
 const HOW_IT_WORKS = [
@@ -56,6 +57,10 @@ export default function SurrenderCalculator() {
     if (!premResult) return null;
     return calculateSurrenderValue(premResult.annualPremium, sumAssured, term, yearsPaid, srbRate);
   }, [premResult, sumAssured, term, yearsPaid, srbRate]);
+
+  useEffect(() => {
+    if (result?.eligible) trackCalculation('surrender-value', { plan: plan?.name, yearsPaid, term });
+  }, [result, plan?.name, yearsPaid, term]);
 
   const shareText =
     result?.eligible

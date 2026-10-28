@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { LIC_PLANS, MODE_LABELS } from "../data/licPlans";
 import { calculatePremium } from "../utils/calcPremium";
 import { calculateMaturity } from "../utils/calcMaturity";
@@ -7,6 +7,7 @@ import PrintButton from "../components/PrintButton";
 import ShareButtons from "../components/ShareButtons";
 import FAQ from "../components/FAQ";
 import HowItWorks from "../components/HowItWorks";
+import { trackEvent } from "../lib/analytics";
 
 const HOW_IT_WORKS = [
   { title: "Select plan", desc: "Choose any LIC plan from the list" },
@@ -177,6 +178,10 @@ export default function PlanPresentation() {
     if (!plan) return null;
     return calculatePremium(plan, age, sumAssured, term, "yearly", true);
   }, [plan, age, sumAssured, term]);
+
+  useEffect(() => {
+    if (premium) trackEvent('presentation:generate', { tool: 'plan-presentation', plan: plan?.name });
+  }, [premium, plan?.name]);
 
   const shareText = premium
     ? `📋 LIC ${plan.name} (Table ${plan.tableNo}) — Plan Presentation\n\n${clientName ? `Client: ${clientName}\n` : ""}Age: ${age}, SA: ${formatINR(sumAssured)}, Term: ${term}yr\nAnnual Premium: ${formatINR(premium.totalPremium)} (incl. GST)\n\n✅ View full details: insure.doaide.com/plan-presentation${agentName ? `\n\n— ${agentName}` : ""}`

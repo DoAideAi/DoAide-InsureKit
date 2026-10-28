@@ -1,10 +1,11 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { usePolicies } from "../hooks/usePolicies";
 import { formatINR } from "../utils/format";
 import PrintButton from "../components/PrintButton";
 import ShareButtons from "../components/ShareButtons";
 import FAQ from "../components/FAQ";
 import HowItWorks from "../components/HowItWorks";
+import { trackEvent } from "../lib/analytics";
 
 const HOW_IT_WORKS = [
   { title: "Add policies", desc: "Go to Policy Tracker and add your client policies" },
@@ -31,6 +32,7 @@ function getDueStatus(daysUntil) {
 }
 
 export default function PremiumDueRegister() {
+  useEffect(() => { trackEvent('tool:view', { tool: 'premium-due-register' }); }, []);
   const { policies: allPolicies, loading, getUpcomingRenewals, isCloud } = usePolicies();
   const [daysAhead, setDaysAhead] = useState(90);
   const [filterText, setFilterText] = useState("");

@@ -1,8 +1,9 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import ShareButtons from "../components/ShareButtons";
 import PrintButton from "../components/PrintButton";
 import FAQ from "../components/FAQ";
 import HowItWorks from "../components/HowItWorks";
+import { trackCalculation } from "../lib/analytics";
 
 const HOW_IT_WORKS = [
   { title: "Enter date of birth", desc: "Provide client's date of birth" },
@@ -78,6 +79,10 @@ export default function InsuranceAgeCalculator() {
   const [refDate, setRefDate] = useState(today);
 
   const result = useMemo(() => calcInsuranceAge(dob, refDate), [dob, refDate]);
+
+  useEffect(() => {
+    if (result) trackCalculation('insurance-age', { insuranceAge: result.insuranceAge });
+  }, [result]);
 
   const shareText = result
     ? `Insurance Age Calculator\nDOB: ${dob}\nActual Age: ${result.actualYears} yrs ${result.actualMonths} months\nInsurance Age: ${result.insuranceAge} years\nNext age change: ${fmtDate(result.nextAgeChange)} (${result.daysToAgeChange} days)\n\n— DoAide InsureKit (insure.doaide.com)`

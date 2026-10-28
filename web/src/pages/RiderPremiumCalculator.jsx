@@ -1,10 +1,11 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { formatINR } from "../utils/format";
 import ResultCard from "../components/ResultCard";
 import ShareButtons from "../components/ShareButtons";
 import PrintButton from "../components/PrintButton";
 import FAQ from "../components/FAQ";
 import HowItWorks from "../components/HowItWorks";
+import { trackCalculation } from "../lib/analytics";
 
 const RIDERS = [
   {
@@ -124,6 +125,10 @@ export default function RiderPremiumCalculator() {
       riderPercent,
     };
   }, [rider, age, riderSA, ppt, basePremium]);
+
+  useEffect(() => {
+    if (result && rider) trackCalculation('rider-premium', { rider: rider.name, age, riderSA });
+  }, [result, rider, age, riderSA]);
 
   const shareText = result && rider
     ? `LIC Rider Premium — ${rider.name}\nAge: ${age}, Cover: ${formatINR(riderSA)}\nRate: ₹${result.rate}/1000\nAnnual Premium: ${formatINR(result.annualRiderPremium)}\nGST (18%): ${formatINR(result.gst)}\nTotal: ${formatINR(result.totalWithGST)}/year\n\n— DoAide InsureKit (insure.doaide.com)`

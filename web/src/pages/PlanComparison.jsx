@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { getPlansForComparison, getSRBRate } from "../data/licPlans";
 import { calculatePremium } from "../utils/calcPremium";
 import { calculateMaturity, calculateTotalPremiumsPaid, calculateIRR } from "../utils/calcMaturity";
@@ -7,6 +7,7 @@ import ShareButtons from "../components/ShareButtons";
 import PrintButton from "../components/PrintButton";
 import FAQ from "../components/FAQ";
 import HowItWorks from "../components/HowItWorks";
+import { trackCalculation } from "../lib/analytics";
 
 
 const HOW_IT_WORKS = [
@@ -48,6 +49,10 @@ export default function PlanComparison() {
       return { plan, prem, mat, totalPaid, irr };
     });
   }, [plans, age, sumAssured, term]);
+
+  useEffect(() => {
+    if (results.length > 0) trackCalculation('plan-comparison', { plans: results.map(r => r.plan.name).join(', ') });
+  }, [results]);
 
   const shareText = results.length > 0
     ? `LIC Plan Comparison\n${results.map((r) => `${r.plan.name}: Premium ${formatINR(r.prem?.annualPremium || 0)}/yr, Maturity ${formatINR(r.mat.maturityValue)}, IRR ${r.irr ? formatPercent(r.irr) : "N/A"}`).join("\n")}\n\nCompared on DoAide InsureKit — insure.doaide.com`

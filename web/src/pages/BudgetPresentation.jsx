@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { LIC_PLANS } from "../data/licPlans";
 import { calculatePremium } from "../utils/calcPremium";
 import { calculateMaturity } from "../utils/calcMaturity";
@@ -7,6 +7,7 @@ import PrintButton from "../components/PrintButton";
 import ShareButtons from "../components/ShareButtons";
 import FAQ from "../components/FAQ";
 import HowItWorks from "../components/HowItWorks";
+import { trackEvent } from "../lib/analytics";
 
 const TABS = [
   { id: "premium", label: "Budget-wise", desc: "Find plans that fit a monthly/annual budget" },
@@ -107,6 +108,10 @@ export default function BudgetPresentation() {
   const currentResults = tab === "premium" ? premiumResults : tab === "sa" ? saResults : maturityResults;
 
   const targetLabel = tab === "premium" ? `Budget: ${formatINR(budget)}/yr` : tab === "sa" ? `Target SA: ${formatINR(targetSA)}` : `Target Maturity: ${formatINR(targetMaturity)}`;
+
+  useEffect(() => {
+    if (currentResults.length > 0) trackEvent('presentation:generate', { tool: 'budget-presentation', mode: tab });
+  }, [currentResults, tab]);
 
   const shareText = `📊 ${TABS.find((t) => t.id === tab)?.label} Plan Comparison\n${clientName ? `Client: ${clientName}, ` : ""}Age: ${age}, Term: ${term}yr\n${targetLabel}\n\n${currentResults.slice(0, 5).map((r, i) => `${i + 1}. ${r.plan.name}: SA ${formatINR(r.sa)}, Premium ${formatINR(r.premium.annualPremium)}/yr${r.maturity?.maturityValue ? `, Maturity ${formatLakh(r.maturity.maturityValue)}` : ""}`).join("\n")}\n\n— DoAide InsureKit (insure.doaide.com)`;
 

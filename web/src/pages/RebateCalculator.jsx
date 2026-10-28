@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { LIC_PLANS, SA_REBATES, MODE_FACTORS, MODE_LABELS, MODE_REBATES, GST_RATES } from "../data/licPlans";
 import { formatINR } from "../utils/format";
 import ResultCard from "../components/ResultCard";
@@ -6,6 +6,7 @@ import ShareButtons from "../components/ShareButtons";
 import PrintButton from "../components/PrintButton";
 import FAQ from "../components/FAQ";
 import HowItWorks from "../components/HowItWorks";
+import { trackCalculation } from "../lib/analytics";
 
 const HOW_IT_WORKS = [
   { title: "Select plan & age", desc: "Choose your LIC plan and entry age" },
@@ -120,6 +121,10 @@ export default function RebateCalculator() {
       saComparison,
     };
   }, [plan, age, sumAssured, term, mode]);
+
+  useEffect(() => {
+    if (result) trackCalculation('rebate', { plan: plan?.name, mode, sumAssured });
+  }, [result, plan?.name, mode, sumAssured]);
 
   const shareText = result
     ? `LIC ${plan.name} — Rebate Analysis\nSA: ${formatINR(sumAssured)}, Age: ${age}, Term: ${term}yr\nTabular Rate: ₹${result.tabularRate}/1000\nSA Rebate: ₹${result.saRebate}/1000 (saves ${formatINR(result.saRebateAmount)}/yr)\nMode Rebate: ${(result.modeRebatePercent * 100).toFixed(0)}% (saves ${formatINR(result.modeRebateAmount)}/yr)\nTotal Saving: ${formatINR(result.totalTermSaving)} over ${term} years\n\n— DoAide InsureKit (insure.doaide.com)`

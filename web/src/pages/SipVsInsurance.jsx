@@ -1,10 +1,11 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { formatINR, formatLakh } from "../utils/format";
 import ResultCard from "../components/ResultCard";
 import ShareButtons from "../components/ShareButtons";
 import PrintButton from "../components/PrintButton";
 import FAQ from "../components/FAQ";
 import HowItWorks from "../components/HowItWorks";
+import { trackCalculation } from "../lib/analytics";
 
 const HOW_IT_WORKS = [
   { title: "Enter your budget", desc: "Monthly amount you can spend on insurance + investment" },
@@ -112,6 +113,10 @@ Budget: ${formatINR(monthlyBudget)}/month | Age: ${age} | Term: ${term} yrs
 *Wealth Gap: ${formatLakh(result.wealthGap)} more with Term+SIP (${result.sipMultiple}×)*
 
 Calculated on insure.doaide.com/sip-vs-insurance`;
+
+  useEffect(() => {
+    if (result && !result.error) trackCalculation('sip-vs-insurance', { term, sipReturn });
+  }, [result, term, sipReturn]);
 
   return (
     <div className="animate-fade-up">

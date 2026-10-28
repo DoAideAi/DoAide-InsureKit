@@ -1,9 +1,10 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { LIC_PLANS, MODE_LABELS } from "../data/licPlans";
 import { formatINR } from "../utils/format";
 import FAQ from "../components/FAQ";
 import HowItWorks from "../components/HowItWorks";
 import ShareButtons from "../components/ShareButtons";
+import { trackEvent } from "../lib/analytics";
 
 
 const HOW_IT_WORKS = [
@@ -48,6 +49,7 @@ function saveReceipts(list) {
 }
 
 export default function ReceiptGenerator() {
+  useEffect(() => { trackEvent('tool:view', { tool: 'receipt-generator' }); }, []);
   const receiptRef = useRef(null);
   const [savedReceipts, setSavedReceipts] = useState(() => loadReceipts());
   const [showHistory, setShowHistory] = useState(false);

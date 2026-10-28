@@ -1,5 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect } from "react";
+import { trackEvent } from "../lib/analytics";
 import { getPlanBySlug, getRelatedPlans, PLAN_TYPE_LABELS } from "../data/licPlans";
 import { BONUS_HISTORY } from "../data/bonusHistory";
 import FAQ from "../components/FAQ";
@@ -113,6 +114,10 @@ function buildJsonLd(plan, faqItems) {
 export default function PlanDetailPage() {
   const { slug } = useParams();
   const plan = getPlanBySlug(slug);
+
+  useEffect(() => {
+    if (plan) trackEvent('plan:view', { plan: plan.name, tableNo: plan.tableNo });
+  }, [plan]);
 
   useEffect(() => {
     if (!plan) return;

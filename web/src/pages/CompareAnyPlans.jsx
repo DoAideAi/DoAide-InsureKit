@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { LIC_PLANS, PLAN_TYPES, getSRBRate } from "../data/licPlans";
 import { calculatePremium } from "../utils/calcPremium";
 import { calculateMaturity, calculateTotalPremiumsPaid, calculateIRR } from "../utils/calcMaturity";
@@ -7,6 +7,7 @@ import ShareButtons from "../components/ShareButtons";
 import PrintButton from "../components/PrintButton";
 import HowItWorks from "../components/HowItWorks";
 import FAQ from "../components/FAQ";
+import { trackCalculation } from "../lib/analytics";
 
 const HOW_IT_WORKS = [
   { title: "Pick any 2 plans", desc: "Choose from all 24+ LIC plans" },
@@ -76,6 +77,10 @@ export default function CompareAnyPlans() {
 
   const r1 = useMemo(() => compute(plan1Id, age1, sa1, term1), [plan1Id, age1, sa1, term1]);
   const r2 = useMemo(() => compute(plan2Id, age2, sa2, term2), [plan2Id, age2, sa2, term2]);
+
+  useEffect(() => {
+    if (r1 && r2) trackCalculation('compare-any-plans');
+  }, [r1, r2]);
 
   const shareText = r1 && r2
     ? `LIC Plan Comparison\n\n${r1.plan.name} vs ${r2.plan.name}\n\n${r1.plan.name}:\n  Premium: ${formatINR(r1.prem?.annualPremium || 0)}/yr\n  ${r1.mat ? `Maturity: ${formatINR(r1.mat.maturityValue)}` : "No maturity"}\n  ${r1.irr ? `IRR: ${formatPercent(r1.irr)}` : ""}\n\n${r2.plan.name}:\n  Premium: ${formatINR(r2.prem?.annualPremium || 0)}/yr\n  ${r2.mat ? `Maturity: ${formatINR(r2.mat.maturityValue)}` : "No maturity"}\n  ${r2.irr ? `IRR: ${formatPercent(r2.irr)}` : ""}\n\nCompared on DoAide InsureKit — insure.doaide.com`

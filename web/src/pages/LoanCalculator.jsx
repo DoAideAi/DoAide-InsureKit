@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { LIC_PLANS, PLAN_TYPES, getSRBRate } from "../data/licPlans";
 import { calculatePremium } from "../utils/calcPremium";
 import { calculateLoanAgainstPolicy } from "../utils/calcLoan";
@@ -8,6 +8,7 @@ import ShareButtons from "../components/ShareButtons";
 import PrintButton from "../components/PrintButton";
 import HowItWorks from "../components/HowItWorks";
 import FAQ from "../components/FAQ";
+import { trackCalculation } from "../lib/analytics";
 
 const HOW_IT_WORKS = [
   { title: "Select your policy", desc: "Pick your LIC plan, enter age, SA, and term" },
@@ -55,6 +56,10 @@ export default function LoanCalculator() {
     if (!premResult) return null;
     return calculateLoanAgainstPolicy(premResult.annualPremium, sumAssured, term, yearsPaid, srbRate);
   }, [premResult, sumAssured, term, yearsPaid, srbRate]);
+
+  useEffect(() => {
+    if (result?.eligible) trackCalculation('loan-against-policy', { plan: plan?.name, yearsPaid, term });
+  }, [result, plan?.name, yearsPaid, term]);
 
   const shareText =
     result?.eligible

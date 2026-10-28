@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { LIC_PLANS, PLAN_TYPES } from "../data/licPlans";
 import { calculatePaidUpValue } from "../utils/calcPaidUp";
 import { formatINR, formatPercent, formatLakh } from "../utils/format";
@@ -7,6 +7,7 @@ import ShareButtons from "../components/ShareButtons";
 import PrintButton from "../components/PrintButton";
 import FAQ from "../components/FAQ";
 import HowItWorks from "../components/HowItWorks";
+import { trackCalculation } from "../lib/analytics";
 
 const HOW_IT_WORKS = [
   { title: "Select plan", desc: "Pick your LIC plan and enter policy details" },
@@ -55,6 +56,10 @@ export default function PaidUpValueCalculator() {
     if (!plan) return null;
     return calculatePaidUpValue(plan, age, sumAssured, term, yearsPaid);
   }, [plan, age, sumAssured, term, yearsPaid]);
+
+  useEffect(() => {
+    if (result?.eligible) trackCalculation('paid-up-value', { plan: plan?.name, yearsPaid, term });
+  }, [result, plan?.name, yearsPaid, term]);
 
   const shareText = result?.eligible
     ? `LIC ${plan.name} — Paid-Up Value\nSA: ${formatINR(sumAssured)}, Term: ${term}yr, Paid: ${yearsPaid}yr\nPaid-Up SA: ${formatINR(result.paidUpSA)}\nBonus Accrued: ${formatINR(result.totalBonusAccrued)}\nPaid-Up Maturity: ${formatINR(result.paidUpMaturity)}\n\n— DoAide InsureKit (insure.doaide.com)`

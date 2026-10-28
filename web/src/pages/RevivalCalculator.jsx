@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { MODE_LABELS } from "../data/licPlans";
 import { calculateRevival } from "../utils/calcRevival";
 import { formatINR, formatPercent } from "../utils/format";
@@ -7,6 +7,7 @@ import ShareButtons from "../components/ShareButtons";
 import PrintButton from "../components/PrintButton";
 import FAQ from "../components/FAQ";
 import HowItWorks from "../components/HowItWorks";
+import { trackCalculation } from "../lib/analytics";
 
 
 const HOW_IT_WORKS = [
@@ -34,6 +35,10 @@ export default function RevivalCalculator() {
     () => calculateRevival(annualPremium, mode, lapsedMonths, sumAssured),
     [annualPremium, mode, lapsedMonths, sumAssured],
   );
+
+  useEffect(() => {
+    if (result) trackCalculation('revival', { lapsedMonths, mode });
+  }, [result, lapsedMonths, mode]);
 
   const shareText = result
     ? `LIC Policy Revival Estimate\nAnnual Premium: ${formatINR(annualPremium)}\nLapsed: ${lapsedMonths} months\nArrears: ${formatINR(result.totalArrears)}\nInterest: ${formatINR(result.interest)}\nGST: ${formatINR(result.gstOnArrears)}\nTotal Revival Amount: ${formatINR(result.totalRevivalAmount)}\n${result.medicalNote}\n\nCalculated on DoAide InsureKit — insure.doaide.com`

@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useClients } from "../hooks/useClients";
 import { usePolicies } from "../hooks/usePolicies";
 import { formatINR, formatLakh } from "../utils/format";
@@ -6,6 +6,7 @@ import PrintButton from "../components/PrintButton";
 import FAQ from "../components/FAQ";
 import HowItWorks from "../components/HowItWorks";
 import ShareButtons from "../components/ShareButtons";
+import { trackEvent } from "../lib/analytics";
 
 const HOW_IT_WORKS = [
   { title: "Select report", desc: "Choose the type of business report" },
@@ -282,6 +283,7 @@ function PerformanceReport({ policies, clients }) {
 }
 
 export default function ReportGenerator() {
+  useEffect(() => { trackEvent('tool:view', { tool: 'report-generator' }); }, []);
   const [reportType, setReportType] = useState("portfolio");
 
   const { policies } = usePolicies();

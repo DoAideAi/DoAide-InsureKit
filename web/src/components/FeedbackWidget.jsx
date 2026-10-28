@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { trackFeedback } from "../lib/analytics";
 
 export default function FeedbackWidget() {
   const [open, setOpen] = useState(false);
@@ -24,6 +25,7 @@ export default function FeedbackWidget() {
     } catch {
       // best-effort
     }
+    trackFeedback(rating, comment.trim() || null);
     setSubmitting(false);
     setSubmitted(true);
     setTimeout(() => {

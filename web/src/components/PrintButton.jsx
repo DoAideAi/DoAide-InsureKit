@@ -1,7 +1,9 @@
+import { trackPrint } from "../lib/analytics";
+
 export default function PrintButton() {
   return (
     <button
-      onClick={() => window.print()}
+      onClick={() => { trackPrint('insurekit-tool'); window.print(); }}
       className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 text-white/50 rounded-lg text-sm font-medium hover:bg-white/10 hover:text-white/70 transition-colors print:hidden"
     >
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

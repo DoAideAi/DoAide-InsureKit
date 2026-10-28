@@ -1,9 +1,10 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { validateClient } from "../utils/clientStore";
 import { useClients } from "../hooks/useClients";
 import FAQ from "../components/FAQ";
 import PrintButton from "../components/PrintButton";
 import HowItWorks from "../components/HowItWorks";
+import { trackEvent } from "../lib/analytics";
 
 
 const HOW_IT_WORKS = [
@@ -41,6 +42,7 @@ function computeUpcomingEvents(clients, daysAhead) {
 }
 
 export default function ClientReminders() {
+  useEffect(() => { trackEvent('tool:view', { tool: 'client-reminders' }); }, []);
   const { clients, loading, addClient, updateClient, removeClient, isCloud } = useClients();
   const [showForm, setShowForm] = useState(false);
   const [errors, setErrors] = useState([]);

@@ -1,7 +1,8 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import FAQ from "../components/FAQ";
 import HowItWorks from "../components/HowItWorks";
 import ShareButtons from "../components/ShareButtons";
+import { trackEvent } from "../lib/analytics";
 
 const HOW_IT_WORKS = [
   { title: "Select state", desc: "Choose your state from the dropdown" },
@@ -64,6 +65,7 @@ const TYPE_BADGE = {
 };
 
 export default function BranchLocator() {
+  useEffect(() => { trackEvent('tool:view', { tool: 'branch-locator' }); }, []);
   const [selectedState, setSelectedState] = useState("");
   const [searchText, setSearchText] = useState("");
 

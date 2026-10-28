@@ -1,7 +1,8 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import FAQ from "../components/FAQ";
 import HowItWorks from "../components/HowItWorks";
 import ShareButtons from "../components/ShareButtons";
+import { trackEvent } from "../lib/analytics";
 
 const SPECIALIZATIONS = [
   "General Physician",
@@ -107,6 +108,7 @@ const FAQ_ITEMS = [
 ];
 
 export default function DoctorPanelLocator() {
+  useEffect(() => { trackEvent('tool:view', { tool: 'doctor-panel-locator' }); }, []);
   const [city, setCity] = useState("Mumbai");
   const [specialization, setSpecialization] = useState("General Physician");
   const [searchQuery, setSearchQuery] = useState("");

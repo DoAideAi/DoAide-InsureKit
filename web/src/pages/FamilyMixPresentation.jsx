@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { LIC_PLANS } from "../data/licPlans";
 import { calculatePremium } from "../utils/calcPremium";
 import { calculateMaturity } from "../utils/calcMaturity";
@@ -7,6 +7,7 @@ import PrintButton from "../components/PrintButton";
 import ShareButtons from "../components/ShareButtons";
 import FAQ from "../components/FAQ";
 import HowItWorks from "../components/HowItWorks";
+import { trackEvent } from "../lib/analytics";
 
 const HOW_IT_WORKS = [
   { title: "Add family members", desc: "Enter name, age, and relation for each member" },
@@ -93,6 +94,10 @@ export default function FamilyMixPresentation() {
     }
     return { totalSA, totalAnnual, totalPaid, totalMaturity };
   }, [results, members]);
+
+  useEffect(() => {
+    if (results.some(r => r?.premium)) trackEvent('presentation:generate', { tool: 'family-mix', count: members.length });
+  }, [results, members.length]);
 
   const shareText = `👨‍👩‍👧‍👦 Family Insurance Plan — ${familyName || "Family"}\n\n${results.map((r, i) => r?.premium ? `${members[i].relation} (${members[i].name || "—"}, ${members[i].age}): ${r.plan.name} — SA ${formatINR(members[i].sumAssured)}, Premium ${formatINR(r.premium.annualPremium)}/yr` : "").filter(Boolean).join("\n")}\n\nTotal Premium: ${formatINR(totals.totalAnnual)}/yr\nTotal Coverage: ${formatINR(totals.totalSA)}\n\n— DoAide InsureKit (insure.doaide.com)`;
 

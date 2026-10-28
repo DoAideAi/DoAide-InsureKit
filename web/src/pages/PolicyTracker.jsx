@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { LIC_PLANS, MODE_LABELS } from "../data/licPlans";
 import { validatePolicy } from "../utils/policyStore";
 import { usePolicies } from "../hooks/usePolicies";
@@ -7,6 +7,7 @@ import ShareButtons from "../components/ShareButtons";
 import FAQ from "../components/FAQ";
 import PrintButton from "../components/PrintButton";
 import HowItWorks from "../components/HowItWorks";
+import { trackEvent } from "../lib/analytics";
 
 const MODE_OPTIONS = Object.entries(MODE_LABELS);
 
@@ -45,6 +46,7 @@ const EMPTY_FORM = {
 };
 
 export default function PolicyTracker() {
+  useEffect(() => { trackEvent('tool:view', { tool: 'policy-tracker' }); }, []);
   const { policies, loading, addPolicy, updatePolicy, removePolicy, getUpcomingRenewals, isCloud } = usePolicies();
   const [showForm, setShowForm] = useState(false);
   const [editingId, setEditingId] = useState(null);

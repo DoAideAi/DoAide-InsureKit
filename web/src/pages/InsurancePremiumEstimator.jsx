@@ -1,9 +1,10 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { formatINR } from "../utils/format";
 import ShareButtons from "../components/ShareButtons";
 import PrintButton from "../components/PrintButton";
 import FAQ from "../components/FAQ";
 import HowItWorks from "../components/HowItWorks";
+import { trackCalculation } from "../lib/analytics";
 
 const HOW_IT_WORKS = [
   { title: "Enter your details", desc: "Age, gender, smoker status, and health" },
@@ -91,6 +92,10 @@ export default function InsurancePremiumEstimator() {
   const [isFemale, setIsFemale] = useState(false);
 
   const result = useMemo(() => estimatePremium(type, age, sa, term, isSmoker, isFemale), [type, age, sa, term, isSmoker, isFemale]);
+
+  useEffect(() => {
+    if (result) trackCalculation('premium-estimator', { type, age, term });
+  }, [result, type, age, term]);
 
   const shareText = `Insurance Premium Estimate\nType: ${INSURANCE_TYPES.find(t => t.id === type)?.label}\nAge: ${age}, Cover: ${formatINR(sa)}, Term: ${term} years\nEstimated Annual Premium: ${formatINR(result.total)} (incl. GST)\n\nCalculated on InsureKit — insure.doaide.com/tools/premium-estimator`;
 

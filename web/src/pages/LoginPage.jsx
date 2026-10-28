@@ -1,5 +1,6 @@
 import { useAuth } from "../contexts/AuthContext";
 import { Navigate } from "react-router-dom";
+import { trackEvent } from "../lib/analytics";
 
 const PROVIDERS = [
   {
@@ -66,7 +67,7 @@ export default function LoginPage() {
         {PROVIDERS.map((p) => (
           <button
             key={p.id}
-            onClick={() => login(p.id)}
+            onClick={() => { trackEvent('auth:login', { provider: p.id }); login(p.id); }}
             className="w-full flex items-center gap-3 px-4 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all text-white font-medium"
           >
             {p.icon}

@@ -1,3 +1,5 @@
+import { trackShare } from "../lib/analytics";
+
 export default function WhatsAppShare({ text }) {
   const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
   return (
@@ -5,6 +7,7 @@ export default function WhatsAppShare({ text }) {
       href={url}
       target="_blank"
       rel="noopener noreferrer"
+      onClick={() => trackShare('whatsapp', 'insurekit-tool')}
       className="inline-flex items-center gap-2 px-4 py-2 bg-[#25D366]/15 text-[#25D366] rounded-lg text-sm font-medium hover:bg-[#25D366]/25 transition-colors no-underline"
     >
       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
